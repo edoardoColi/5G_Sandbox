@@ -224,7 +224,6 @@ function print_results()
 ### START EXECUTION
 
 _PROCESS_ID=$$		#save the process ID of the current shell
-trap handle_sigint SIGINT		#set up a trap for SIGINT
 
 if [ $# -le 0 ] && [ -t 0 ]; then		#if the number of arguments is less than or equal to 0 and we don't have a redirection.
 	error_msg $0 "Nothing has been passed to analyze"
@@ -249,18 +248,19 @@ fi
 if ! [ -t 0 ]; then		#checks if the descriptor is opened with a redirection, regardless of type of redirection used.
 	if [ -p /dev/stdin ]; then		#checks if there is a pipe redirection. Redirection from a command and not from a file.
 		if [[ $_PROBE_FLAG == 'true' ]]; then		#checks if we want to process a data stream (from tcpdump).
+			trap handle_sigint SIGINT		#set up a trap for SIGINT
 			lock_print=$(mktemp)		#creates a unique temporary file name in /tmp/ folder.
 			_FILE_REF="$_FILE3_TMP"
 			sleep 2		#waiting to have something to analyze
-			echo -ne "\033[2J\033[H"
+			echo -ne "\033[2J\033[H"		#The "\033[2J" sequence clear the terminal screen, the "\033[H" sequence moves the cursor to the top left corner of the screen.
 			while true
 			do
 				filtering_away > $lock_print
 				check_ret filtering_away $?
 				print_results >> $lock_print
 				check_ret print_results $?
-				echo -e "\033[2J\033[H"
-				echo "$(cat $lock_print)"
+				echo -e "\033[2J\033[H"		#The "\033[2J" sequence clear the terminal screen, the "\033[H" sequence moves the cursor to the top left corner of the screen.
+				echo "$(cat $lock_print)"		#The "$()" syntax is used to execute the command inside the parentheses and return the result as a string (used to handle print cases TO REVIEW)
 			done
 		else
 			_FILE_REF=$(mktemp)		#creates a unique temporary file name in /tmp/ folder.
