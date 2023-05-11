@@ -90,7 +90,7 @@ function handle_sigint()
 	rm -f "$_FILE2_TMP"
 	rm -f "$_FILE3_TMP"
 	rm -f "$lock_print"
-	kill -9 $_PROCESS_ID		#forcefully terminate the process, and any subprocesses or child processes, with the ID using the SIGKILL signal (sometimes it's not enough, why?)
+	kill -9 $_PROCESS_ID		#forcefully terminate the process, and any subprocesses or child processes, with the ID using the SIGKILL signal. (sometimes it's not enough, why?)
 	exit 0
 }
 
@@ -129,24 +129,24 @@ function filtering_away()
 	filter="($scope) && (wlan) $filterSSID"		#save the complete filter which wanna use to split the data.
 	rm -f $_FILE_TMP $_FILE2_TMP		#just as a precaution.
 	_TMP=$(mktemp -d)		#creates a unique temporary directory in /tmp/ folder.
-	mkfifo $_TMP/pipe1 $_TMP/pipe2 $_TMP/pipe3 $_TMP/pipe4		#creates named pipes inside a temporary directory created before
+	mkfifo $_TMP/pipe1 $_TMP/pipe2 $_TMP/pipe3 $_TMP/pipe4		#creates named pipes inside a temporary directory created before.
 	verbose_msg "Counting packets in $_FILE_REF"
 	verbose_msg "Counting packets with field 'wlan' in $_FILE_REF"
 	if ! [[ $_SSID_REF == '' ]]; then
 		verbose_msg "Counting packets with field 'wlan.ssid == $_SSID_REF' in $_FILE_REF"
 	fi
 	verbose_msg "Counting packets with filter '$filter' in $_FILE_REF"
-	(tshark -r $_FILE_REF -T fields -e frame.number -c $_MAX_TO | wc -l >$_TMP/pipe1) &
-	(tshark -r $_FILE_REF -Y "wlan" -T fields -e frame.number -c $_MAX_TO | wc -l >$_TMP/pipe2) &
+	(tshark -r $_FILE_REF -T fields -e frame.number -c $_MAX_TO | wc -l >$_TMP/pipe1) &		#the symbol '&' runs the command in the background, allowing other commands to be run in parallel.
+	(tshark -r $_FILE_REF -Y "wlan" -T fields -e frame.number -c $_MAX_TO | wc -l >$_TMP/pipe2) &		#the symbol '&' runs the command in the background, allowing other commands to be run in parallel.
 	if ! [[ $_SSID_REF == '' ]]; then
-		(tshark -r $_FILE_REF -Y "wlan.ssid == $_SSID_REF" -T fields -e frame.number -c $_MAX_TO | wc -l >$_TMP/pipe3) &
+		(tshark -r $_FILE_REF -Y "wlan.ssid == $_SSID_REF" -T fields -e frame.number -c $_MAX_TO | wc -l >$_TMP/pipe3) &		#the symbol '&' runs the command in the background, allowing other commands to be run in parallel.
 	else
 		(echo "(NaN)" >$_TMP/pipe3) &
 	fi
 	if [[ $_UNIQ_FLAG == 'true' ]]; then
-		(tshark -r $_FILE_REF -Y "$filter" -T fields -e wlan.ta -c $_MAX_TO | tr '[:lower:]' '[:upper:]' | sort | uniq | tee >(wc -l > $_TMP/pipe4) >"$_FILE2_TMP") &
+		(tshark -r $_FILE_REF -Y "$filter" -T fields -e wlan.ta -c $_MAX_TO | tr '[:lower:]' '[:upper:]' | sort | uniq | tee >(wc -l > $_TMP/pipe4) >"$_FILE2_TMP") &		#the symbol '&' runs the command in the background, allowing other commands to be run in parallel.
 	else
-		(tshark -r $_FILE_REF -Y "$filter" -T fields -e wlan.ta -e wlan.fc.type -c $_MAX_TO | tr '[:lower:]' '[:upper:]' | tee >(wc -l > $_TMP/pipe4) >"$_FILE2_TMP") &
+		(tshark -r $_FILE_REF -Y "$filter" -T fields -e wlan.ta -e wlan.fc.type -c $_MAX_TO | tr '[:lower:]' '[:upper:]' | tee >(wc -l > $_TMP/pipe4) >"$_FILE2_TMP") &		#the symbol '&' runs the command in the background, allowing other commands to be run in parallel.
 	fi
 	while read line; do
 		verbose_msg " '$line'"
@@ -155,7 +155,7 @@ function filtering_away()
 		_PCKS_SSID_CNTR=$(echo $line | cut -d ' ' -f 3)
 		_SCOPE_ALL_CNTR=$(echo $line | cut -d ' ' -f 4)
 	done < <(paste -d ' ' $_TMP/pipe1 $_TMP/pipe2 $_TMP/pipe3 $_TMP/pipe4)		#the 'paste' command merges the lines of both named pipes and separates them with a space. the '< <' operator to redirect the merged output as input to the while loop.
-	rm -rf $_TMP		#remove the temporary directory and all its contents recursively (-r) and without prompting (-f)
+	rm -rf $_TMP		#remove the temporary directory and all its contents recursively (-r) and without prompting (-f).
 	verbose_msg "=> $_PCKS_CNTR for no filter"
 	verbose_msg "=> $_PCKS_WLAN_CNTR for filter 'wlan'"
 	if ! [[ $_SSID_REF == '' ]]; then
@@ -252,7 +252,7 @@ function print_results()
 		fi
 		# rm $_FILE_TMP
 		if [ $(wc -l < $_FILE2_TMP) -gt $N ] && [[ $_UNIQ_FLAG == 'false' ]]; then
-			echo && echo -e "${LOOKGOOD}$_FILE2_TMP${DEFAULT}" && head -n $N "$_FILE2_TMP" && echo "..." && echo "[MAC Address]           [Frame Control Type:]" && echo "                        [0-Management Frame, 1-Control Frame, 2-Data Frame, 3-Extension Frame, (4+)-PV1 Reserved]"
+			echo && echo -e "${LOOKGOOD}$_FILE2_TMP${DEFAULT}" && echo "[MAC Address]           [Frame Control Type:]" && echo "                        [0-Management Frame, 1-Control Frame, 2-Data Frame, 3-Extension Frame, (4+)-PV1 Reserved]" && head -n $N "$_FILE2_TMP" && echo "..."
 		elif [ $(wc -l < $_FILE2_TMP) -gt $N ]; then
 			echo && echo -e "${LOOKGOOD}$_FILE2_TMP${DEFAULT}" && head -n $N "$_FILE2_TMP" && echo "..."
 		elif [ $(wc -l < $_FILE2_TMP) -gt 0 ]; then
@@ -294,7 +294,7 @@ if ! [ -t 0 ]; then		#checks if the descriptor is opened with a redirection, reg
 			trap handle_sigint SIGINT		#set up a trap for SIGINT
 			lock_print=$(mktemp)		#creates a unique temporary file in /tmp/ folder.
 			_FILE_REF="$_FILE3_TMP"
-			sleep 2		#waiting to have something to analyze
+			sleep 2		#waiting to have something to analyze.
 			echo -ne "\033[2J\033[H"		#the "\033[2J" sequence clear the terminal screen, the "\033[H" sequence moves the cursor to the top left corner of the screen.
 			while true
 			do
