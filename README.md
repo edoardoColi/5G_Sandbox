@@ -4,7 +4,7 @@
 1. [Overview of 5G](#overview-of-5g)
 2. [Overview of 802.11](#overview-of-80211)
 3. [Comparison of 5G and 802.11](#comparison-of-5g-and-80211)
-4. [Traffic MAC Analyzer](#traffic-mac-analyzer)
+4. [Traffic MAC Analyzer (MACshuffle.sh)](#traffic-mac-analyzer-MACshufflesh)
 	- [Execution](#execution)
 
 ## Overview of 5G
@@ -148,7 +148,7 @@ TODO
 TODO  
 TODO  
 
-## Traffic MAC Analyzer
+## Traffic MAC Analyzer (MACshuffle.sh)
 TODO  
 TODO  
 TODO  
