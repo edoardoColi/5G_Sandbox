@@ -8,7 +8,7 @@
 	- [Execution](#execution)
 
 ## Overview of 5G
-TODO  
+-TODO  
 TODO  
 TODO  
 TODO  
@@ -102,7 +102,7 @@ TODO
 TODO  
 
 ## Comparison of 5G and 802.11
-TODO  
+-TODO  
 TODO  
 TODO  
 TODO  
