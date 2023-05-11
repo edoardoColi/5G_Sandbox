@@ -2,8 +2,8 @@
 
 ## Table of Contents
 1. [Overview of 5G](#overview-of-5g)
-2. [Overview of 802.11](#overview-of-802-11)
-3. [Comparison of 5G and 802.11](#comparison-of-5g-and-802-11)
+2. [Overview of 802,11](#overview-of-802,11)
+3. [Comparison of 5G and 802,11](#comparison-of-5g-and-802,11)
 4. [Traffic MAC Analyzer](#traffic-mac-analyzer)
 	- [Execution](#execution)
 
@@ -140,3 +140,11 @@ Both 5G and 802.11 are wireless communication technologies that use radio waves 
 5G and 802.11 will continue to coexist, with 5G providing high-speed, low-latency mobile communications and 802.11 providing local area networking. However, there may be opportunities for convergence between the two technologies, such as using 5G to provide high-speed backhaul for 802.11 networks.
 
 Overall, both 5G and 802.11 have their strengths and weaknesses, and their use cases and applications will continue to evolve as new technologies and devices emerge.
+---------------------------------------------------------------------------4
+Lo standard 802 si riferisce a una serie di standard di comunicazione sviluppati dallo Institute of Electrical and Electronics Engineers (IEEE) per reti locali e wireless.
+
+Il più noto è lo standard 802.11, che è il protocollo di base per la tecnologia Wi-Fi utilizzata per la connessione a Internet senza fili. Questo standard definisce le specifiche per la trasmissione dati attraverso le onde radio, inclusi la frequenza, la velocità di trasmissione e la sicurezza dei dati.
+
+Ci sono anche altri standard 802 che definiscono le specifiche per reti locali cablate (ad esempio 802.3 Ethernet), reti wireless di area personale (ad esempio 802.15 Bluetooth) e reti wireless di area metropolitana (ad esempio 802.16 WiMAX).
+
+In generale, gli standard 802 consentono l'interoperabilità tra dispositivi di diversi produttori e forniscono una guida per l'implementazione delle reti in modo che funzionino in modo affidabile e sicuro.
