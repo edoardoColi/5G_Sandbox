@@ -23,7 +23,7 @@ Possiamo aggiungere i nuovi utenti ai gruppi, per farlo utilizziamo
 Possiamo ache rimuovere un utente da un gruppo con `gpasswd -d username wheel`  
 All'interno dei comandi utilizziamo il gruppo `wheel` che corrisponde al gruppo di utenti che può utilizzare il comando sudo, come specificato nel file `/etc/sudoers`.  
 
-## Overview of 802.11
+## Overview of 802,11
 Per poter aggiungere un nuovo gruppo \<NEW_GROUP\> possiamo utilizzare il comando `groupadd <NEW_GROUP>`. In questo modo verrà aggiunta la voce \<NEW_GROUP\> ai file `/etc/group` e `/etc/gshadow`, nel caso un gruppo con lo stesso nome sia già presente verrà stampato un messaggio di errore.  
 Per cancellare un gruppo \<OLD_GROUP\> possiamo utilizzare il comando `groupdel <OLD_GROUP>`. In questo modo verrà rimossa la voce \<OLD_GROUP\> ai file `/etc/group` e `/etc/gshadow`, nel caso un gruppo con lo stesso nome non sia presente verrà stampato un messaggio di errore.  
 Per verificare la stato dei gruppi degli utenti si può utilizzare `groups`. Per maggiori dettagli consultare il manuale.  
@@ -40,7 +40,7 @@ Possiamo ache rimuovere un utente da un gruppo con `gpasswd -d username wheel`
 All'interno dei comandi utilizziamo il gruppo `wheel` che corrisponde al gruppo di utenti che può utilizzare il comando sudo, come specificato nel file `/etc/sudoers`.  
 
 
-## Comparison of 5G and 802.11
+## Comparison of 5G and 802,11
 Per poter aggiungere un nuovo gruppo \<NEW_GROUP\> possiamo utilizzare il comando `groupadd <NEW_GROUP>`. In questo modo verrà aggiunta la voce \<NEW_GROUP\> ai file `/etc/group` e `/etc/gshadow`, nel caso un gruppo con lo stesso nome sia già presente verrà stampato un messaggio di errore.  
 Per cancellare un gruppo \<OLD_GROUP\> possiamo utilizzare il comando `groupdel <OLD_GROUP>`. In questo modo verrà rimossa la voce \<OLD_GROUP\> ai file `/etc/group` e `/etc/gshadow`, nel caso un gruppo con lo stesso nome non sia presente verrà stampato un messaggio di errore.  
 Per verificare la stato dei gruppi degli utenti si può utilizzare `groups`. Per maggiori dettagli consultare il manuale.  
@@ -87,7 +87,7 @@ All'interno dei comandi utilizziamo il gruppo `wheel` che corrisponde al gruppo 
 ------------------------------------------------------------------------------
 cos'e 5g
 perche si puo' fare una sandbox
-cose 802.11
+cose 802,11
 cosa si vuole fare con lo script
 come funziona lo script
 gestione del caso live stream
@@ -107,7 +107,7 @@ Gli indirizzi MAC randomizzati sono stati introdotti per proteggere la privacy d
 5G Sandbox
 Per quanto riguarda il settore della comunicazione mobile, il 5G rappresenta una svolta tecnologica, poich permette di supportare nuovi servizi e applicazioni come la realt aumentata, la realt virtuale, il cloud computing, l'Internet delle Cose (IoT) e molto altro ancora. Inoltre, il 5G supporta un maggior numero di dispositivi per unit di superficie rispetto al 4G, consentendo di soddisfare la crescente domanda di connettivit mobile. Il 5G utilizza una combinazione di diverse tecnologie, come la modulazione OFDM (Orthogonal Frequency Division Multiplexing) e l'accesso radio NB-IoT (Narrowband Internet of Things), per fornire una maggiore capacit di trasmissione dati, una velocit di trasferimento pi elevata e una latenza pi bassa rispetto al 4G.
 
-Per quanto riguarda il WiFi, il 5G e il WiFi sono tecnologie complementari che possono lavorare insieme per offrire una connessione pi veloce e affidabile. Il WiFi  una tecnologia di rete locale wireless che utilizza le onde radio per connettere dispositivi ad una rete. Il 5G, d'altra parte,  una tecnologia di rete cellulare che offre una connessione mobile veloce e affidabile. Il protocollo 802.11 del WiFi e il protocollo 5G sono stati sviluppati per funzionare in modo indipendente, ma possono essere utilizzati insieme per offrire una connessione Internet pi veloce e affidabile. Ad esempio, alcune implementazioni di 5G, come il 5G FWA (Fixed Wireless Access), utilizzano il WiFi come mezzo per trasmettere i dati in un'area specifica.
+Per quanto riguarda il WiFi, il 5G e il WiFi sono tecnologie complementari che possono lavorare insieme per offrire una connessione pi veloce e affidabile. Il WiFi  una tecnologia di rete locale wireless che utilizza le onde radio per connettere dispositivi ad una rete. Il 5G, d'altra parte,  una tecnologia di rete cellulare che offre una connessione mobile veloce e affidabile. Il protocollo 802,11 del WiFi e il protocollo 5G sono stati sviluppati per funzionare in modo indipendente, ma possono essere utilizzati insieme per offrire una connessione Internet pi veloce e affidabile. Ad esempio, alcune implementazioni di 5G, come il 5G FWA (Fixed Wireless Access), utilizzano il WiFi come mezzo per trasmettere i dati in un'area specifica.
 ------------------------------------------------------------------------------1
 5G is the fifth generation of wireless technology that promises to deliver faster data transfer speeds, lower latency, and increased network capacity. It is designed to enable a wide range of new applications and use cases that were previously not possible with 4G technology, such as remote surgery, autonomous vehicles, and smart cities.
 
@@ -119,31 +119,31 @@ In addition to faster speeds, 5G also promises to reduce latency (the time it ta
 
 Overall, 5G is expected to revolutionize the way we use wireless technology and enable new applications that were previously not possible. However, the rollout of 5G networks is still ongoing and faces challenges such as the need for more infrastructure and the use of higher frequency bands that have limited coverage compared to lower frequency bands.
 ------------------------------------------------------------------------------2
-802.11 is a set of standards for wireless local area networks (WLANs) developed by the Institute of Electrical and Electronics Engineers (IEEE). It is commonly known as Wi-Fi, and it allows devices to connect to the internet or other devices wirelessly. The 802.11 standards define the protocols and technologies for wireless communication, including the frequency bands used for transmission, the data transfer rates, and the security and encryption methods used to protect the data being transmitted. There are several different versions of the 802.11 standard, including 802.11a, 802.11b, 802.11g, 802.11n, and 802.11ac, each with different specifications and capabilities. 802.11 has become an essential part of modern networking, enabling wireless connectivity in homes, offices, and public spaces.
+802,11 is a set of standards for wireless local area networks (WLANs) developed by the Institute of Electrical and Electronics Engineers (IEEE). It is commonly known as Wi-Fi, and it allows devices to connect to the internet or other devices wirelessly. The 802,11 standards define the protocols and technologies for wireless communication, including the frequency bands used for transmission, the data transfer rates, and the security and encryption methods used to protect the data being transmitted. There are several different versions of the 802,11 standard, including 802,11a, 802,11b, 802,11g, 802,11n, and 802,11ac, each with different specifications and capabilities. 802,11 has become an essential part of modern networking, enabling wireless connectivity in homes, offices, and public spaces.
 ------------------------------------------------------------------------------3
-5G and 802.11 are both wireless communication technologies, but they differ in several key areas. Here's a comparison of 5G and 802.11 in terms of their similarities and differences, use cases and applications, advantages and disadvantages, and future developments.
+5G and 802,11 are both wireless communication technologies, but they differ in several key areas. Here's a comparison of 5G and 802,11 in terms of their similarities and differences, use cases and applications, advantages and disadvantages, and future developments.
 
-    Similarities and differences between 5G and 802.11:
+    Similarities and differences between 5G and 802,11:
 
-Both 5G and 802.11 are wireless communication technologies that use radio waves to transmit data. However, they differ in their frequency bands, coverage areas, and data rates. 5G operates in higher frequency bands, providing faster data speeds but requiring more infrastructure to provide coverage. 802.11 operates in lower frequency bands and is primarily used for local area networking.
+Both 5G and 802,11 are wireless communication technologies that use radio waves to transmit data. However, they differ in their frequency bands, coverage areas, and data rates. 5G operates in higher frequency bands, providing faster data speeds but requiring more infrastructure to provide coverage. 802,11 operates in lower frequency bands and is primarily used for local area networking.
 
-    Comparison of 5G and 802.11 use cases and applications:
+    Comparison of 5G and 802,11 use cases and applications:
 
-5G is primarily used for mobile communications, including smartphones, IoT devices, and autonomous vehicles. It can also be used for industrial automation, virtual and augmented reality, and other applications that require high-speed, low-latency data transfer. 802.11 is primarily used for local area networking, such as in homes, offices, and public spaces. It can also be used for IoT applications and other low-bandwidth use cases.
+5G is primarily used for mobile communications, including smartphones, IoT devices, and autonomous vehicles. It can also be used for industrial automation, virtual and augmented reality, and other applications that require high-speed, low-latency data transfer. 802,11 is primarily used for local area networking, such as in homes, offices, and public spaces. It can also be used for IoT applications and other low-bandwidth use cases.
 
-    Comparison of 5G and 802.11 advantages and disadvantages:
+    Comparison of 5G and 802,11 advantages and disadvantages:
 
-5G offers faster data transfer rates, lower latency, and greater capacity than 802.11. However, it requires more infrastructure and is more expensive to deploy. 802.11 is more widely available and less expensive to deploy, but it has lower data transfer rates and higher latency.
+5G offers faster data transfer rates, lower latency, and greater capacity than 802,11. However, it requires more infrastructure and is more expensive to deploy. 802,11 is more widely available and less expensive to deploy, but it has lower data transfer rates and higher latency.
 
-    Future of 5G and 802.11 in relation to each other:
+    Future of 5G and 802,11 in relation to each other:
 
-5G and 802.11 will continue to coexist, with 5G providing high-speed, low-latency mobile communications and 802.11 providing local area networking. However, there may be opportunities for convergence between the two technologies, such as using 5G to provide high-speed backhaul for 802.11 networks.
+5G and 802,11 will continue to coexist, with 5G providing high-speed, low-latency mobile communications and 802,11 providing local area networking. However, there may be opportunities for convergence between the two technologies, such as using 5G to provide high-speed backhaul for 802,11 networks.
 
-Overall, both 5G and 802.11 have their strengths and weaknesses, and their use cases and applications will continue to evolve as new technologies and devices emerge.
+Overall, both 5G and 802,11 have their strengths and weaknesses, and their use cases and applications will continue to evolve as new technologies and devices emerge.
 ---------------------------------------------------------------------------4
 Lo standard 802 si riferisce a una serie di standard di comunicazione sviluppati dallo Institute of Electrical and Electronics Engineers (IEEE) per reti locali e wireless.
 
-Il più noto è lo standard 802.11, che è il protocollo di base per la tecnologia Wi-Fi utilizzata per la connessione a Internet senza fili. Questo standard definisce le specifiche per la trasmissione dati attraverso le onde radio, inclusi la frequenza, la velocità di trasmissione e la sicurezza dei dati.
+Il più noto è lo standard 802,11, che è il protocollo di base per la tecnologia Wi-Fi utilizzata per la connessione a Internet senza fili. Questo standard definisce le specifiche per la trasmissione dati attraverso le onde radio, inclusi la frequenza, la velocità di trasmissione e la sicurezza dei dati.
 
 Ci sono anche altri standard 802 che definiscono le specifiche per reti locali cablate (ad esempio 802.3 Ethernet), reti wireless di area personale (ad esempio 802.15 Bluetooth) e reti wireless di area metropolitana (ad esempio 802.16 WiMAX).
 
