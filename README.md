@@ -8,192 +8,70 @@
 	- [Execution](#execution)
 
 ## Overview of 5G
--TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
+-Per poter aggiungere un nuovo gruppo \<NEW_GROUP\> possiamo utilizzare il comando `groupadd <NEW_GROUP>`. In questo modo verrà aggiunta la voce \<NEW_GROUP\> ai file `/etc/group` e `/etc/gshadow`, nel caso un gruppo con lo stesso nome sia già presente verrà stampato un messaggio di errore.  
+Per cancellare un gruppo \<OLD_GROUP\> possiamo utilizzare il comando `groupdel <OLD_GROUP>`. In questo modo verrà rimossa la voce \<OLD_GROUP\> ai file `/etc/group` e `/etc/gshadow`, nel caso un gruppo con lo stesso nome non sia presente verrà stampato un messaggio di errore.  
+Per verificare la stato dei gruppi degli utenti si può utilizzare `groups`. Per maggiori dettagli consultare il manuale.  
+- Utenti  
+Per aggiungere un Utente utilizziamo `adduser username`  
+in questo modo verrà creata la directory del nuovo utente(/home/username) e inizializzata come `/etc/skel`.  
+Successivamente dovrà essere impostata una password utente tramite `passwd username`.  
+Per rimuovere un Utente utilizziamo `userdel username` e nel caso volessimo cancellare anche la directory dell'utente  `userdel -r username`  
+la rimozione dell'utente comprende anche la rimozione da tutti i gruppi in cui l'utente era membro.  
+  
+Possiamo aggiungere i nuovi utenti ai gruppi, per farlo utilizziamo  
+`usermod -aG wheel username`  
+Possiamo ache rimuovere un utente da un gruppo con `gpasswd -d username wheel`  
+All'interno dei comandi utilizziamo il gruppo `wheel` che corrisponde al gruppo di utenti che può utilizzare il comando sudo, come specificato nel file `/etc/sudoers`.  
 
 ## Overview of 802.11
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
+Per poter aggiungere un nuovo gruppo \<NEW_GROUP\> possiamo utilizzare il comando `groupadd <NEW_GROUP>`. In questo modo verrà aggiunta la voce \<NEW_GROUP\> ai file `/etc/group` e `/etc/gshadow`, nel caso un gruppo con lo stesso nome sia già presente verrà stampato un messaggio di errore.  
+Per cancellare un gruppo \<OLD_GROUP\> possiamo utilizzare il comando `groupdel <OLD_GROUP>`. In questo modo verrà rimossa la voce \<OLD_GROUP\> ai file `/etc/group` e `/etc/gshadow`, nel caso un gruppo con lo stesso nome non sia presente verrà stampato un messaggio di errore.  
+Per verificare la stato dei gruppi degli utenti si può utilizzare `groups`. Per maggiori dettagli consultare il manuale.  
+- Utenti  
+Per aggiungere un Utente utilizziamo `adduser username`  
+in questo modo verrà creata la directory del nuovo utente(/home/username) e inizializzata come `/etc/skel`.  
+Successivamente dovrà essere impostata una password utente tramite `passwd username`.  
+Per rimuovere un Utente utilizziamo `userdel username` e nel caso volessimo cancellare anche la directory dell'utente  `userdel -r username`  
+la rimozione dell'utente comprende anche la rimozione da tutti i gruppi in cui l'utente era membro.  
+  
+Possiamo aggiungere i nuovi utenti ai gruppi, per farlo utilizziamo  
+`usermod -aG wheel username`  
+Possiamo ache rimuovere un utente da un gruppo con `gpasswd -d username wheel`  
+All'interno dei comandi utilizziamo il gruppo `wheel` che corrisponde al gruppo di utenti che può utilizzare il comando sudo, come specificato nel file `/etc/sudoers`.  
+
 
 ## Comparison of 5G and 802.11
--TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
+Per poter aggiungere un nuovo gruppo \<NEW_GROUP\> possiamo utilizzare il comando `groupadd <NEW_GROUP>`. In questo modo verrà aggiunta la voce \<NEW_GROUP\> ai file `/etc/group` e `/etc/gshadow`, nel caso un gruppo con lo stesso nome sia già presente verrà stampato un messaggio di errore.  
+Per cancellare un gruppo \<OLD_GROUP\> possiamo utilizzare il comando `groupdel <OLD_GROUP>`. In questo modo verrà rimossa la voce \<OLD_GROUP\> ai file `/etc/group` e `/etc/gshadow`, nel caso un gruppo con lo stesso nome non sia presente verrà stampato un messaggio di errore.  
+Per verificare la stato dei gruppi degli utenti si può utilizzare `groups`. Per maggiori dettagli consultare il manuale.  
+- Utenti  
+Per aggiungere un Utente utilizziamo `adduser username`  
+in questo modo verrà creata la directory del nuovo utente(/home/username) e inizializzata come `/etc/skel`.  
+Successivamente dovrà essere impostata una password utente tramite `passwd username`.  
+Per rimuovere un Utente utilizziamo `userdel username` e nel caso volessimo cancellare anche la directory dell'utente  `userdel -r username`  
+la rimozione dell'utente comprende anche la rimozione da tutti i gruppi in cui l'utente era membro.  
+  
+Possiamo aggiungere i nuovi utenti ai gruppi, per farlo utilizziamo  
+`usermod -aG wheel username`  
+Possiamo ache rimuovere un utente da un gruppo con `gpasswd -d username wheel`  
+All'interno dei comandi utilizziamo il gruppo `wheel` che corrisponde al gruppo di utenti che può utilizzare il comando sudo, come specificato nel file `/etc/sudoers`.  
 
 ## Traffic MAC Analyzer
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
-TODO  
+Per poter aggiungere un nuovo gruppo \<NEW_GROUP\> possiamo utilizzare il comando `groupadd <NEW_GROUP>`. In questo modo verrà aggiunta la voce \<NEW_GROUP\> ai file `/etc/group` e `/etc/gshadow`, nel caso un gruppo con lo stesso nome sia già presente verrà stampato un messaggio di errore.  
+Per cancellare un gruppo \<OLD_GROUP\> possiamo utilizzare il comando `groupdel <OLD_GROUP>`. In questo modo verrà rimossa la voce \<OLD_GROUP\> ai file `/etc/group` e `/etc/gshadow`, nel caso un gruppo con lo stesso nome non sia presente verrà stampato un messaggio di errore.  
+Per verificare la stato dei gruppi degli utenti si può utilizzare `groups`. Per maggiori dettagli consultare il manuale.  
+- Utenti  
+Per aggiungere un Utente utilizziamo `adduser username`  
+in questo modo verrà creata la directory del nuovo utente(/home/username) e inizializzata come `/etc/skel`.  
+Successivamente dovrà essere impostata una password utente tramite `passwd username`.  
+Per rimuovere un Utente utilizziamo `userdel username` e nel caso volessimo cancellare anche la directory dell'utente  `userdel -r username`  
+la rimozione dell'utente comprende anche la rimozione da tutti i gruppi in cui l'utente era membro.  
+  
+Possiamo aggiungere i nuovi utenti ai gruppi, per farlo utilizziamo  
+`usermod -aG wheel username`  
+Possiamo ache rimuovere un utente da un gruppo con `gpasswd -d username wheel`  
+All'interno dei comandi utilizziamo il gruppo `wheel` che corrisponde al gruppo di utenti che può utilizzare il comando sudo, come specificato nel file `/etc/sudoers`.  
+
 ### Execution
 ```
 ./MACshuffle.sh -h
