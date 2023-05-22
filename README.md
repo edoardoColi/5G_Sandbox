@@ -45,15 +45,17 @@ requisiti per l'uso e scopo del programma.
 ### Execution
 To ensure seamless compatibility the program requires at least Bash v4.4.20, a popular and widely supported shell for Unix-like operating systems. Additionally, it utilizes TShark 3.6.7, a powerful command-line tool for capturing and analyzing network traffic based on the Wireshark engine.  
 By leveraging the capabilities of Bash and TShark, the MAC Packet Analyzer script provides a user-friendly interface to facilitate counting random MACs against those encountered. We can run the program with the -h flag to get more detailed information.  
-Below we find some execution references  
+```
+./MACshuffle.sh -h
+```
+Below we find some execution references:  
+<img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/MACshuffle/Installer.png width="60%" height="60%">
+Descrizione immagine
+<img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/MACshuffle/Installer.png width="60%" height="60%">
+Descrizione immagine
+<img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/MACshuffle/Installer.png width="60%" height="60%">
+Descrizione immagine
 
-![Image description](https://github.com/edoardoColi/42_Roma_Luiss/blob/edoardoColi/42cursus/Born2beroot/Installer.png)
-
-
-<img src=https://github.com/edoardoColi/42_Roma_Luiss/blob/edoardoColi/42cursus/Born2beroot/Installer.png width="60%" height="60%">
-
-
-<img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/MACshuffle/NOME.png width="60%" height="60%">
 
 ### Security in WPA3
 WPA3 is a security protocol for Wi-Fi networks introduced by the Wi-Fi Alliance. WPA3 is a security technology that is implemented on Wi-Fi networks based on the 802.11 standard.  
