@@ -33,15 +33,8 @@ Network layers, play a crucial role in the design and operation of computer netw
 The MAC (Media Access Control) is a sublayer of the second layer called the "Data Link Layer" in the OSI reference model and the TCP/IP model. MAC is responsible for managing MAC addresses, which are unique identifiers associated with each device's network interface. MAC addresses are used to correctly route data packets to the correct recipient within a local area network.  
   
 Support for randomized MAC addresses is not always available on all Android devices due to hardware or software limitations. In some cases, older devices may not be able to support randomized MAC address functionality. In addition, the implementation of randomized MAC addresses may also be affected by the privacy and security policies of the device manufacturer or mobile network operator. Some manufacturers may decide not to implement this feature because it is not part of their security and privacy goals, or because their security policy is to use static MAC addresses for traceability and device identification reasons.  
-
-
-
-i livelli nei pacchetti. a quale livello esiste il mac. cosa centra WPA3 con 802.11
-cosa significa avere usa scheda di rete in monitor mode.
-requisiti per l'uso e scopo del programma.
-
-
-
+  
+In order to capture packets at the MAC (Media Access Control) layer, it is necessary to have "Wi-Fi adapter in promiscuous mode" aka "Wi-Fi sniffer". This is because Wi-Fi networks use a wireless medium where multiple devices share the same frequency band for communication. In the normal operation mode Wi-Fi adapter only captures and processes packets that are specifically addressed to it. However, when a Wi-Fi component is set to monitor mode, it can capture all packets transmitted within its range, regardless of their destination MAC address. It allows the Wi-Fi network administrators to gain insights into network performance, identify potential security vulnerabilities, detect unauthorized devices or activities, and optimize network configurations.  
 ### Execution
 To ensure seamless compatibility the program requires at least Bash v4.4.20, a popular and widely supported shell for Unix-like operating systems. Additionally, it utilizes TShark 3.6.7, a powerful command-line tool for capturing and analyzing network traffic based on the Wireshark engine.  
 By leveraging the capabilities of Bash and TShark, the MAC Packet Analyzer script provides a user-friendly interface to facilitate counting random MACs against those encountered. We can run the program with the -h flag to get more detailed information.  
@@ -57,6 +50,7 @@ Below we find some execution references:
 *Expected output for running the analysis using the verbose flag. More details are shown regarding the counts.*  
 <img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/MACshuffle/verbose_unicity_test.png width="105%" height="105%">  
 *Expected output for running the same analysis but accounting for duplicates.*  
+  
 To perform a stream data analysis in a certain interface we can use the following command (in this case it's necessary to have tcpdump).
 ```
 sudo tcpdump -i <interface> -U -w .MACprobe.tmp | ./MACshuffle.sh -p
