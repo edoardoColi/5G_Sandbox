@@ -52,14 +52,18 @@ Below we find some execution references:
 <img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/MACshuffle/analyze_file.png width="95%" height="95%">  
 *Expected output for analyzing a capture file passed to the program in differents ways.*  
   
+  
 <img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/MACshuffle/unicity_bounded_test.png width="95%" height="95%">  
 *Expected output for performing the same analysis as before but with combination of unicity flag and n flag to bound the number of packets analyzed.*  
+  
   
 <img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/MACshuffle/versose_test.png width="95%" height="95%">  
 *Expected output for running the analysis using the verbose flag. More details are shown regarding the counts.*  
   
+  
 <img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/MACshuffle/verbose_unicity_test.png width="95%" height="95%">  
 *Expected output for running the same analysis but accounting for duplicates.*  
+
   
 To perform a stream data analysis in a certain interface we can use the following command (in this case it's necessary to have tcpdump).
 ```
