@@ -50,12 +50,15 @@ By leveraging the capabilities of Bash and TShark, the MAC Packet Analyzer scrip
 ```
 Below we find some execution references:  
 <img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/MACshuffle/Installer.png width="60%" height="60%">  
-Descrizione immagine  
+*Descrizione immagine*  
 <img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/MACshuffle/Installer.png width="60%" height="60%">  
-Descrizione immagine  
+*Descrizione immagine*  
 <img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/MACshuffle/Installer.png width="60%" height="60%">  
-Descrizione immagine  
-
+*Descrizione immagine*  
+To perform a stream data analysis in a certain interface we can use the following command (in this case it's necessary to have tcpdump).
+```
+sudo tcpdump -i <interface> -U -w .MACprobe.tmp | ./MACshuffle.sh -p
+```
 
 ### Security in WPA3
 WPA3 is a security protocol for Wi-Fi networks introduced by the Wi-Fi Alliance. WPA3 is a security technology that is implemented on Wi-Fi networks based on the 802.11 standard.  
