@@ -18,7 +18,7 @@ _VERBOSE_FLAG='false'
 _UNIQ_FLAG='false'
 _PROBE_FLAG='false'
 #Global parametric variable
-_MAX_TO=50000
+_UP_TO=50000
 #Counters to show the results
 _PCKS_CNTR=0
 _PCKS_WLAN_CNTR=0
@@ -136,17 +136,17 @@ function filtering_away()
 		verbose_msg "Counting packets with field 'wlan.ssid == $_SSID_REF' in $_FILE_REF"
 	fi
 	verbose_msg "Counting packets with filter '$filter' in $_FILE_REF"
-	(tshark -r $_FILE_REF -T fields -e frame.number -c $_MAX_TO | wc -l >$_TMP/pipe1) &		#the symbol '&' runs the command in the background, allowing other commands to be run in parallel.
-	(tshark -r $_FILE_REF -Y "wlan" -T fields -e frame.number -c $_MAX_TO | wc -l >$_TMP/pipe2) &		#the symbol '&' runs the command in the background, allowing other commands to be run in parallel.
+	(tshark -r $_FILE_REF -T fields -e frame.number -c $_UP_TO | wc -l >$_TMP/pipe1) &		#the symbol '&' runs the command in the background, allowing other commands to be run in parallel.
+	(tshark -r $_FILE_REF -Y "wlan" -T fields -e frame.number -c $_UP_TO | wc -l >$_TMP/pipe2) &		#the symbol '&' runs the command in the background, allowing other commands to be run in parallel.
 	if ! [[ $_SSID_REF == '' ]]; then
-		(tshark -r $_FILE_REF -Y "wlan.ssid == $_SSID_REF" -T fields -e frame.number -c $_MAX_TO | wc -l >$_TMP/pipe3) &		#the symbol '&' runs the command in the background, allowing other commands to be run in parallel.
+		(tshark -r $_FILE_REF -Y "wlan.ssid == $_SSID_REF" -T fields -e frame.number -c $_UP_TO | wc -l >$_TMP/pipe3) &		#the symbol '&' runs the command in the background, allowing other commands to be run in parallel.
 	else
 		(echo "(NaN)" >$_TMP/pipe3) &
 	fi
 	if [[ $_UNIQ_FLAG == 'true' ]]; then
-		(tshark -r $_FILE_REF -Y "$filter" -T fields -e wlan.ta -c $_MAX_TO | tr '[:lower:]' '[:upper:]' | sort | uniq | tee >(wc -l > $_TMP/pipe4) >"$_FILE2_TMP") &		#the symbol '&' runs the command in the background, allowing other commands to be run in parallel.
+		(tshark -r $_FILE_REF -Y "$filter" -T fields -e wlan.ta -c $_UP_TO | tr '[:lower:]' '[:upper:]' | sort | uniq | tee >(wc -l > $_TMP/pipe4) >"$_FILE2_TMP") &		#the symbol '&' runs the command in the background, allowing other commands to be run in parallel.
 	else
-		(tshark -r $_FILE_REF -Y "$filter" -T fields -e wlan.ta -e wlan.fc.type -c $_MAX_TO | tr '[:lower:]' '[:upper:]' | tee >(wc -l > $_TMP/pipe4) >"$_FILE2_TMP") &		#the symbol '&' runs the command in the background, allowing other commands to be run in parallel.
+		(tshark -r $_FILE_REF -Y "$filter" -T fields -e wlan.ta -e wlan.fc.type -c $_UP_TO | tr '[:lower:]' '[:upper:]' | tee >(wc -l > $_TMP/pipe4) >"$_FILE2_TMP") &		#the symbol '&' runs the command in the background, allowing other commands to be run in parallel.
 	fi
 	while read line; do
 		verbose_msg " '$line'"
@@ -177,22 +177,22 @@ function filtering_away()
 	fi
 #(SEQUENTIAL EXECUTION)
 	# verbose_msg "Counting packets in $_FILE_REF"
-	# _PCKS_CNTR=$(tshark -r $_FILE_REF -T fields -e frame.number -c $_MAX_TO | wc -l)		#for details see 'man tshark'.
+	# _PCKS_CNTR=$(tshark -r $_FILE_REF -T fields -e frame.number -c $_UP_TO | wc -l)		#for details see 'man tshark'.
 	# verbose_msg "=> $_PCKS_CNTR"
 	# verbose_msg "Counting packets with field 'wlan' in $_FILE_REF"
-	# _PCKS_WLAN_CNTR=$(tshark -r $_FILE_REF -Y "wlan" -T fields -e frame.number -c $_MAX_TO | wc -l)		#for details see 'man tshark'.
+	# _PCKS_WLAN_CNTR=$(tshark -r $_FILE_REF -Y "wlan" -T fields -e frame.number -c $_UP_TO | wc -l)		#for details see 'man tshark'.
 	# verbose_msg "=> $_PCKS_WLAN_CNTR"
 	# if ! [[ $_SSID_REF == '' ]]; then
 	# 	filterSSID="&& (wlan.ssid == $_SSID_REF)"		#filter from command line to narrow the scope with a specific SSID.
 	# 	verbose_msg "Counting packets with field 'wlan.ssid == $_SSID_REF' in $_FILE_REF"
-	# 	_PCKS_SSID_CNTR=$(tshark -r $_FILE_REF -Y "wlan.ssid == $_SSID_REF" -T fields -e frame.number -c $_MAX_TO | wc -l)		#for details see 'man tshark'.
+	# 	_PCKS_SSID_CNTR=$(tshark -r $_FILE_REF -Y "wlan.ssid == $_SSID_REF" -T fields -e frame.number -c $_UP_TO | wc -l)		#for details see 'man tshark'.
 	# 	verbose_msg "=> $_PCKS_SSID_CNTR"
 	# fi
 	# filter="($scope) && (wlan) $filterSSID"		#save the complete filter which wanna use to split the data.
 	# rm -f $_FILE_TMP $_FILE2_TMP		#just as a precaution.
 	# if [[ $_UNIQ_FLAG == 'true' ]]; then
 	# 	verbose_msg "Counting packets with filter '$filter' in $_FILE_REF"
-	# 	_SCOPE_ALL_CNTR=$(tshark -r $_FILE_REF -Y "$filter" -T fields -e wlan.ta -c $_MAX_TO | tr '[:lower:]' '[:upper:]' | sort | uniq | tee >(wc -l) >"$_FILE2_TMP")		#for details see 'man tshark'. tr swap all upper-case. sort+uniq remove the duplicates. tee split the data in the pipe.
+	# 	_SCOPE_ALL_CNTR=$(tshark -r $_FILE_REF -Y "$filter" -T fields -e wlan.ta -c $_UP_TO | tr '[:lower:]' '[:upper:]' | sort | uniq | tee >(wc -l) >"$_FILE2_TMP")		#for details see 'man tshark'. tr swap all upper-case. sort+uniq remove the duplicates. tee split the data in the pipe.
 	# 	verbose_msg "=> $_SCOPE_ALL_CNTR"
 	# 	if [[ $_VERBOSE_FLAG == 'true' ]]; then
 	# 		_SCOPE_RAND_CNTR=$(cut -c 1-17 $_FILE2_TMP | awk '/^.[AE26]:..:..:..:..:../{print $1}' | sort | uniq | tee >(wc -l) >"$_FILE_TMP")		#cut print selected parts of line. awk is used to consider only MAC specified(x[A E 2 6]:xx:xx:xx:xx:xx). sort+uniq remove the duplicates(seems useless but necessary). tee split the data in the pipe.
@@ -201,7 +201,7 @@ function filtering_away()
 	# 	fi
 	# else
 	# 	verbose_msg "Counting packets with filter '$filter' in $_FILE_REF"
-	# 	_SCOPE_ALL_CNTR=$(tshark -r $_FILE_REF -Y "$filter" -T fields -e wlan.ta -e wlan.fc.type -c $_MAX_TO | tr '[:lower:]' '[:upper:]' | tee >(wc -l) >"$_FILE2_TMP")		#for details see 'man tshark'. tr swap all upper-case. tee split the data in the pipe.
+	# 	_SCOPE_ALL_CNTR=$(tshark -r $_FILE_REF -Y "$filter" -T fields -e wlan.ta -e wlan.fc.type -c $_UP_TO | tr '[:lower:]' '[:upper:]' | tee >(wc -l) >"$_FILE2_TMP")		#for details see 'man tshark'. tr swap all upper-case. tee split the data in the pipe.
 	# 	verbose_msg "=> $_SCOPE_ALL_CNTR"
 	# 	if [[ $_VERBOSE_FLAG == 'true' ]]; then
 	# 		_SCOPE_RAND_CNTR=$(cut -c 1-17 $_FILE2_TMP | awk '/^.[AE26]:..:..:..:..:../{print $1}' | tee >(wc -l) >"$_FILE_TMP")		#cut print selected parts of line. awk is used to consider only MAC specified(x[A E 2 6]:xx:xx:xx:xx:xx). tee split the data in the pipe.
@@ -279,7 +279,7 @@ else
 		h) usage $0 
 		exit 0;;
 		i) _SSID_REF="${OPTARG}" ;;
-		n) _MAX_TO="${OPTARG}" ;;
+		n) _UP_TO="${OPTARG}" ;;
 		p) _PROBE_FLAG='true' ;;
 		u) _UNIQ_FLAG='true' ;;
 		v) _VERBOSE_FLAG='true' ;;
