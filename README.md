@@ -1,4 +1,4 @@
-# 5G Sandbox
+# Communication Sandbox
 
 ## Table of Contents
 1. [Overview of 5G](#overview-of-5g)
