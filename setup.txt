@@ -1,0 +1,14 @@
+# Usefull to know
+# sudo fuser -k 6653/tcp
+# sudo mn -c
+
+
+Per far funzionare le cose serve:
+
+sudo apt-get install python3
+python3 --version		//This command should display the version of Python 3.x that was installed
+
+sudo apt-get install openvswitch-testcontroller //non serve davvero
+sudo apt-get install python3-pip
+sudo pip3 install configparser
+sudo apt-get install mininet
