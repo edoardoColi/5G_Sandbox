@@ -1,4 +1,5 @@
 import configparser
+from colorama import Fore, Style
 from mininet.net	import Mininet
 from mininet.topo	import Topo
 from mininet.node	import Node
@@ -97,7 +98,10 @@ def run_topology(config_file):
 				interf = parts[4]
 				cmd = 'ip route add ' + pck_src + ' via ' + pck_nexthop + ' dev ' + interf
 				(net.getNodeByName(name)).cmd(cmd)
-	net.pingAll()
+	if net.pingAll():
+		print(Fore.RED + "Network has issues" + Style.RESET_ALL)
+	else:
+		print(Fore.GREEN + "Network working properly" + Style.RESET_ALL)
 	# CLI(net)
 	net.stop()		#Stopping the network
 
