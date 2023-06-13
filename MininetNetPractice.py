@@ -1,5 +1,5 @@
 import configparser
-from colorama import Fore, Style
+from colorama		import Fore, Style
 from mininet.net	import Mininet
 from mininet.topo	import Topo
 from mininet.node	import Node
@@ -24,8 +24,8 @@ def build_topology(config_file):
 			if line.startswith('#'):		#Skip comment
 				continue
 
-			parts = line.split(" ")		#Parse the topology file using spaces
-			if parts[0] == 'host':		#Parse hosts
+			parts = line.split(" ")			#Parse the topology file using spaces
+			if parts[0] == 'host':			#Parse hosts
 				host_name = parts[1]
 				host_ip = parts[2]
 				host_nexthop = 'via ' + parts[3]
@@ -89,7 +89,6 @@ def run_topology(config_file):
 			line = line.strip()
 			if line.startswith('#'):		#Skip comment
 				continue
-
 			parts = line.split(" ")
 			if parts[0] == 'route':		#Parse routing tables
 				name = parts[1]
@@ -102,7 +101,7 @@ def run_topology(config_file):
 		print(Fore.RED + "Network has issues" + Style.RESET_ALL)
 	else:
 		print(Fore.GREEN + "Network working properly" + Style.RESET_ALL)
-	# CLI(net)
+	CLI(net)
 	net.stop()		#Stopping the network
 
 if __name__ == '__main__':
