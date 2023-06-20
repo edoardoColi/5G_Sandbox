@@ -15,7 +15,7 @@ pip3 install colorama
 pip3 install mininet
 pip3 install ryu
 pip3 install --upgrade pip
-pip install pillow
+pip3 install pillow
 pip3 install matplotlib
 sudo apt-get install mininet
 
