@@ -6,7 +6,6 @@ from mininet.node	import Node
 from mininet.cli	import CLI
 from mininet.link	import TCLink
 from mininet.log	import setLogLevel
-from copy import copy 			#TODO verify/temporaneo
 
 class MyRouter (Node):
 	def config(self, **params):
@@ -18,110 +17,88 @@ class MyRouter (Node):
 
 def build_topology(config_file):
 	topo = Topo()
-	elementsH = {}  # Dictionary to store nodes
-	elementsR = {}  # Dictionary to store nodes
-	elementsS = {}  # Dictionary to store nodes
+	elements = {}  							# Dictionary to store nodes
 
-	h1 = topo.addHost('h1', ip='161.46.247.131/26', defaultRoute='via 161.46.247.129')
-	h2 = topo.addHost('h2', ip='161.46.247.196/27', defaultRoute='via 161.46.247.195')
+	# elements['Internet'] = topo.addNode('Internet', cls=MyRouter, ip='0.0.0.0/0')
+	with open(config_file, 'r') as file:
+		for line in file:
+			line = line.strip()
+			if line.startswith('#'):		#Skip comment
+				continue
+			parts = line.split(" ")			#Parse the topology file using spaces
+			if parts[0] == 'host':			#Parse hosts
+				host_name = parts[1]
+				host_ip = parts[2]
+				host_nexthop = 'via ' + parts[3]
+				elements[host_name] = topo.addHost(host_name, ip=host_ip, defaultRoute=host_nexthop)
 
-	r1 = topo.addNode('r1', cls=MyRouter, ip='161.46.247.129/26')
+			elif parts[0] == 'router':		#Parse routers
+				router_name = parts[1]
+				router_ip = parts[2]
+				elements[router_name] = topo.addNode(router_name, cls=MyRouter, ip=router_ip)
 
-	topo.addLink(h1, r1, intfName2='R23', params2={'ip' : '161.46.247.129/26'})
-	topo.addLink(h2, r1, intfName2='R22', params2={'ip' : '161.46.247.195/27'})
-	
-	# with open(config_file, 'r') as file:
-	# 	for line in file:
-	# 		line = line.strip()
-	# 		if line.startswith('#'):		#Skip comment
-	# 			continue
+			elif parts[0] == 'switch':		#Parse switches
+				switch_name = parts[1]
+				elements[switch_name] = topo.addSwitch(switch_name)
 
-	# 		parts = line.split(" ")			#Parse the topology file using spaces
-	# 		if parts[0] == 'host':			#Parse hosts
-	# 			host_name = parts[1]
-	# 			host_ip = parts[2]
-	# 			host_nexthop = 'via ' + parts[3]
-	# 			host = topo.addHost(host_name, ip=host_ip, defaultRoute=host_nexthop)
-	# 			host_c = copy(host)
-	# 			elementsH[host_name] = (host_c)
+			elif parts[0] == 'linkRR':		#Parse links routers to routers
+				router1 = parts[1]
+				router1_intfName = parts[2]
+				router1_intfIP = parts[3]
+				router2 = parts[4]
+				router2_intfName = parts[5]
+				router2_intfIP = parts[6]
+				topo.addLink(elements.get(router1), elements.get(router2), intfName1=router1_intfName, intfName2=router2_intfName, params1={'ip' : router1_intfIP}, params2={'ip' : router2_intfIP})
 
-	# 		elif parts[0] == 'router':		#Parse routers
-	# 			router_name = parts[1]
-	# 			router_ip = parts[2]
-	# 			router = topo.addNode(router_name, cls=MyRouter, ip=router_ip)
-	# 			router_c = copy(router)
-	# 			elementsR[router_name] = (router_c)
+			elif parts[0] == 'linkRH':		#Parse links routers to hosts
+				host = parts[1]
+				host_intfName = parts[2]
+				router = parts[3]
+				router_intfName = parts[4]
+				router_intfIP = parts[5]
+				topo.addLink(elements.get(host), elements.get(router), intfName1=host_intfName, intfName2=router_intfName, params2={'ip' : router_intfIP})
 
-	# 		elif parts[0] == 'switch':		#Parse switches
-	# 			switch_name = parts[1]
-	# 			switch = topo.addSwitch(switch_name)
-	# 			switch_c = copy(switch)
-	# 			elementsS[switch_name] = (switch_c)
+			elif parts[0] == 'linkRS':		#Parse links routers to switches
+				node1 = parts[1]
+				node2 = parts[2]
+				# topo.addLink(node1, node2)
 
-	# 		elif parts[0] == 'linkSH':		#Parse links switches to hosts
-	# 			node1 = parts[1]
-	# 			node2 = parts[2]
-	# 			# topo.addLink(node1, node2)
+			elif parts[0] == 'linkSS':		#Parse links switches to switches
+				node1 = parts[1]
+				node2 = parts[2]
+				# topo.addLink(node1, node2)
 
-	# 		elif parts[0] == 'linkSS':		#Parse links switches to switches
-	# 			node1 = parts[1]
-	# 			node2 = parts[2]
-	# 			# topo.addLink(node1, node2)
-
-	# 		elif parts[0] == 'linkHR':		#Parse links hosts to routers
-	# 			node1 = parts[1]
-	# 			node2 = parts[2]
-	# 			intf_name2 = parts[3]
-	# 			n2_ip = parts[4]
-	# 			topo.addLink(elementsH.get(node1), elementsR.get(node2), intfName2=intf_name2, params2={'ip' : n2_ip})
-
-	# 		elif parts[0] == 'linkRR':		#Parse links routers to routers
-	# 			node1 = parts[1]
-	# 			node2 = parts[2]
-	# 			intf_name1 = parts[3]
-	# 			intf_name2 = parts[4]
-	# 			ip1 = parts[5]
-	# 			ip2 = parts[6]
-	# 			# topo.addLink(node1, node2, intfName1=intf_name1, intfName2=intf_name2, params1={'ip' : ip1}, params2={'ip' : ip2})
-			
-	# 		# elif parts[0] == 'route':		#Parse routing tables
-	# 		# 	name = parts[1]
-	# 		# 	for node in topo.nodes():
-	# 		# 		if node == name:
-	# 		# 			(node).cmd('ip route add 0.0.0.0/0 via 10.0.0.1 dev r1-eth2')
-	# 		# 			break
+			elif parts[0] == 'linkSH':		#Parse links switches to hosts
+				node1 = parts[1]
+				node2 = parts[2]
+				# topo.addLink(node1, node2)
 
 	return topo
 
 def run_topology(config_file):
-	setLogLevel('info')		#Different logging levels are 'info' 'warning' 'error' 'debug'
+	setLogLevel('info')						#Different logging levels are 'info' 'warning' 'error' 'debug'
 	topo = build_topology(config_file)
 	net = Mininet(topo=topo, link=TCLink)
-	net.start()		#Starting the network
-
-	# net.addLink(h1, r1, intfName2='R23', params2={'ip' : '161.46.247.129/26'})
-	# net.addLink(h2, r1, intfName2='R22', params2={'ip' : '161.46.247.195/27'})
-
-	# with open(config_file, 'r') as file:		#Search in the configuration file for routing table
-	# 	for line in file:
-	# 		line = line.strip()
-	# 		if line.startswith('#'):		#Skip comment
-	# 			continue
-	# 		parts = line.split(" ")
-	# 		if parts[0] == 'route':		#Parse routing tables
-	# 			name = parts[1]
-	# 			pck_src = parts[2]
-	# 			pck_nexthop = parts[3]
-	# 			interf = parts[4]
-	# 			cmd = 'ip route add ' + pck_src + ' via ' + pck_nexthop + ' dev ' + interf
-	# 			(net.getNodeByName(name)).cmd(cmd)
-
+	net.start()								#Starting the network
+	with open(config_file, 'r') as file:	#Search in the configuration file for routing table
+		for line in file:
+			line = line.strip()
+			if line.startswith('#'):		#Skip comment
+				continue
+			parts = line.split(" ")
+			if parts[0] == 'route':			#Parse routing tables
+				name = parts[1]
+				pck_src = parts[2]
+				pck_nexthop = parts[3]
+				interf = parts[4]
+				cmd = 'ip route add ' + pck_src + ' via ' + pck_nexthop + ' dev ' + interf
+				(net.getNodeByName(name)).cmd(cmd)
 	if net.pingAll():
 		print(Fore.RED + "Network has issues" + Style.RESET_ALL)
 	else:
 		print(Fore.GREEN + "Network working properly" + Style.RESET_ALL)
 	CLI(net)
-	net.stop()		#Stopping the network
+	net.stop()								#Stopping the network
 
 if __name__ == '__main__':
 	run_topology('MininetTopo.conf')
