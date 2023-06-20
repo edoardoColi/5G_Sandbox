@@ -19,17 +19,28 @@ def build_topology(config_file):
 	topo = Topo()
 	elements = {}  # Dictionary to store nodes
 
-	h4 = topo.addHost('H4', ip='161.46.247.131/26', defaultRoute='via 161.46.247.129')
-	h3 = topo.addHost('H3', ip='161.46.247.196/27', defaultRoute='via 161.46.247.195')
+	# h1 = topo.addHost('H1', ip='161.46.247.2/25', defaultRoute='via 161.46.247.1')
+	# h2 = topo.addHost('H2', ip='161.46.247.3/25', defaultRoute='via 161.46.247.1')
 
-	r1 = topo.addNode('R1', cls=MyRouter, ip='161.46.247.254/30')
+	s1 = topo.addSwitch('S1')
+
+	# h4 = topo.addHost('H4', ip='161.46.247.131/26', defaultRoute='via 161.46.247.129')
+	# h3 = topo.addHost('H3', ip='161.46.247.196/27', defaultRoute='via 161.46.247.195')
+
+	r1 = topo.addNode('R1', cls=MyRouter, ip='161.46.247.1/25')
 	r2 = topo.addNode('R2', cls=MyRouter, ip='161.46.247.253/30')
 
-	# Ordine importante
+	### Ordine importante ###
+	topo.addLink(r1, s1, intfName1='R11', params1={'ip' : '161.46.247.1/25'})
+	
 	topo.addLink(r2, r1, intfName2='R13', intfName1='R21', params2={'ip' : '161.46.247.254/30'}, params1={'ip' : '161.46.247.253/30'})
 
-	topo.addLink(r2, h3, intfName2='H31', intfName1='R22', params1={'ip' : '161.46.247.195/27'})
-	topo.addLink(r2, h4, intfName2='H41', intfName1='R23', params1={'ip' : '161.46.247.129/26'})
+	# topo.addLink(r2, h3, intfName2='H31', intfName1='R22', params1={'ip' : '161.46.247.195/27'})
+	# topo.addLink(r2, h4, intfName2='H41', intfName1='R23', params1={'ip' : '161.46.247.129/26'})
+
+
+	# topo.addLink(s1, h1, intfName2='H11')
+	# topo.addLink(s1, h2 ,intfName2='H21')
 	
 	return topo
 
@@ -39,8 +50,8 @@ def run_topology(config_file):
 	net = Mininet(topo=topo, link=TCLink)
 	net.start()		#Starting the network
 
-	(net.getNodeByName('R1')).cmd('ip route add 161.46.247.192/27 via 161.46.247.254 dev R13')
-	(net.getNodeByName('R1')).cmd('ip route add 161.46.247.128/26 via 161.46.247.254 dev R13')
+	# (net.getNodeByName('R1')).cmd('ip route add 161.46.247.192/27 via 161.46.247.254 dev R13')
+	# (net.getNodeByName('R1')).cmd('ip route add 161.46.247.128/26 via 161.46.247.254 dev R13')
 
 	if net.pingAll():
 		print(Fore.RED + "Network has issues" + Style.RESET_ALL)
