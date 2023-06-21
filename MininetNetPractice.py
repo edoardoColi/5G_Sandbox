@@ -19,7 +19,6 @@ def build_topology(config_file):
 	topo = Topo()
 	elements = {}  							# Dictionary to store nodes
 
-	# elements['Internet'] = topo.addNode('Internet', cls=MyRouter, ip='0.0.0.0/0')
 	with open(config_file, 'r') as file:
 		for line in file:
 			line = line.strip()
