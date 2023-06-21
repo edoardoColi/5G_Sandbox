@@ -25,6 +25,23 @@ def build_topology(config_file):
 			if line.startswith('#'):		#Skip comment
 				continue
 			parts = line.split(" ")			#Parse the topology file using spaces
+			if parts[0] == 'N_host':			#Parse hosts
+				host_name = parts[1]
+				elements[host_name] = topo.addHost(host_name)
+
+			elif parts[0] == 'N_router':		#Parse routers
+				router_name = parts[1]
+				elements[router_name] = topo.addNode(router_name)
+
+			elif parts[0] == 'N_switch':		#Parse switches
+				switch_name = parts[1]
+				elements[switch_name] = topo.addSwitch(switch_name)
+
+			elif parts[0] == 'NN_link':		#Parse general links nodes to nodes
+				node1 = parts[1]
+				node2 = parts[2]
+				topo.addLink(elements.get(node1), elements.get(node2))
+
 			if parts[0] == 'host':			#Parse hosts
 				host_name = parts[1]
 				host_ip = parts[2]
@@ -35,10 +52,6 @@ def build_topology(config_file):
 				router_name = parts[1]
 				router_ip = parts[2]
 				elements[router_name] = topo.addNode(router_name, cls=MyRouter, ip=router_ip)
-
-			elif parts[0] == 'switch':		#Parse switches
-				switch_name = parts[1]
-				elements[switch_name] = topo.addSwitch(switch_name)
 
 			elif parts[0] == 'linkRR':		#Parse links routers to routers
 				router1 = parts[1]
