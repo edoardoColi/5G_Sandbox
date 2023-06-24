@@ -73,17 +73,17 @@ def build_topology(config_file):
 			elif parts[0] == 'linkRS':		#Parse links routers to switches
 				node1 = parts[1]
 				node2 = parts[2]
-				# topo.addLink(node1, node2)
+				# topo.addLink	TODO
 
 			elif parts[0] == 'linkSS':		#Parse links switches to switches
 				node1 = parts[1]
 				node2 = parts[2]
-				# topo.addLink(node1, node2)
+				# topo.addLink	TODO
 
 			elif parts[0] == 'linkSH':		#Parse links switches to hosts
 				node1 = parts[1]
 				node2 = parts[2]
-				# topo.addLink(node1, node2)
+				# topo.addLink	TODO
 
 	return topo
 
@@ -98,7 +98,13 @@ def run_topology(config_file):
 			if line.startswith('#'):		#Skip comment
 				continue
 			parts = line.split(" ")
-			if parts[0] == 'route':			#Parse routing tables
+			if parts[0] == 'N_route':			#Parse routing tables
+				name = parts[1]
+				pck_src = parts[2]
+				pck_nexthop = parts[3]
+				# cmd = 'ip route add ' + pck_src + ' via ' + pck_nexthop TODO
+				# (net.getNodeByName(name)).cmd(cmd)
+			elif parts[0] == 'route':			#Parse routing tables
 				name = parts[1]
 				pck_src = parts[2]
 				pck_nexthop = parts[3]
