@@ -1,10 +1,10 @@
-import configparser
+import sys
 from colorama		import Fore, Style
 from mininet.net	import Mininet
+from mininet.link	import TCLink
 from mininet.topo	import Topo
 from mininet.node	import Node
 from mininet.cli	import CLI
-from mininet.link	import TCLink
 from mininet.log	import setLogLevel
 
 class MyRouter (Node):
@@ -42,6 +42,12 @@ def build_topology(config_file):
 				node2 = parts[2]
 				topo.addLink(elements.get(node1), elements.get(node2))
 
+			elif parts[0] == 'SN_link':		#Parse general links switches to nodes
+				switch = parts[1]
+				node = parts[2]
+				bandwidth = int(parts[3])
+				topo.addLink(elements.get(switch), elements.get(node), bw=bandwidth)
+
 			if parts[0] == 'host':			#Parse hosts
 				host_name = parts[1]
 				host_ip = parts[2]
@@ -71,19 +77,22 @@ def build_topology(config_file):
 				topo.addLink(elements.get(host), elements.get(router), intfName1=host_intfName, intfName2=router_intfName, params2={'ip' : router_intfIP})
 
 			elif parts[0] == 'linkRS':		#Parse links routers to switches
-				node1 = parts[1]
-				node2 = parts[2]
-				# topo.addLink	TODO
+				switch = parts[1]
+				router = parts[2]
+				router_intfName = parts[3]
+				router_intfIP = parts[4]
+				topo.addLink(elements.get(switch), elements.get(router), intfName2=router_intfName, params2={'ip' : router_intfIP})
 
 			elif parts[0] == 'linkSS':		#Parse links switches to switches
-				node1 = parts[1]
-				node2 = parts[2]
-				# topo.addLink	TODO
+				switch1 = parts[1]
+				switch2 = parts[2]
+				topo.addLink(elements.get(switch1), elements.get(switch2))
 
 			elif parts[0] == 'linkSH':		#Parse links switches to hosts
-				node1 = parts[1]
-				node2 = parts[2]
-				# topo.addLink	TODO
+				switch = parts[1]
+				host = parts[2]
+				host_intfName = parts[3]
+				topo.addLink(elements.get(switch), elements.get(host), intfName2=host_intfName)
 
 	return topo
 
@@ -119,4 +128,12 @@ def run_topology(config_file):
 	net.stop()								#Stopping the network
 
 if __name__ == '__main__':
-	run_topology('MininetTopo.conf')
+	if '-f' in sys.argv:
+		try:
+			file_index = sys.argv.index('-f') + 1
+			config_file = sys.argv[file_index]
+			run_topology(config_file)
+		except IndexError:
+			print("Error: No configuration file provided after -f flag.")
+	else:
+		run_topology('MininetTopo.conf')

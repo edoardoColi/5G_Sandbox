@@ -16,6 +16,7 @@ pip3 install mininet
 pip3 install ryu
 pip3 install --upgrade pip
 pip3 install pillow
+pip3 install pox
 pip3 install matplotlib
 sudo apt-get install mininet
 

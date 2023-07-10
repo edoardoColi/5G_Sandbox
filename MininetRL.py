@@ -50,7 +50,7 @@ class MyTCPAgent:
         # Implement TCP data transfer simulation
         
         # Placeholder logic: Simulating data transfer
-        time.sleep(0.1)  # Simulating data transfer delay
+        # time.sleep(0.1)  # Simulating data transfer delay
         
         # Simulate congestion control by waiting for a fixed amount of time
         time.sleep(0.1)
@@ -136,19 +136,14 @@ class WindowPredictionAgent:
         max_q_value = max(self.q_table[curr_state].values())  # Get the maximum Q-value for the current state
         self.q_table[prev_state][prev_action] += self.alpha * (reward + self.gamma * max_q_value - self.q_table[prev_state][prev_action])
 
-# Create the Mininet network with custom topology
-def create_network():
-    topo = MyTopology()
-    net = Mininet(topo=topo)
-    net.start()
-    return net
-
 # Main function
 if __name__ == '__main__':
     setLogLevel('info')
     
     # Create the Mininet network
-    net = create_network()
+    topo = MyTopology()
+    net = Mininet(topo=topo)
+    net.start
     
     # Instantiate TCP and RL agents
     tcp_agent = MyTCPAgent()
@@ -161,7 +156,6 @@ if __name__ == '__main__':
     
     # Perform data transfer with RL-based tunnel selection and window prediction
     start_time = time.time()
-    
     while True:
         if time.time() - start_time > 10:  # End packet exchange after <X> seconds
             break
@@ -172,14 +166,14 @@ if __name__ == '__main__':
         tcp_agent.handle_data_transfer(tunnel, window_size)
 
         # Update RL agents based on rewards
-        reward = 0.5  # Actual reward value
+        reward = -0.5  # Actual reward value
         tunnel_agent.update_policy(reward)
         # window_agent.update_policy(reward)
 
     # Stop the Mininet network
     net.stop()
 
-    # Plot Transmission Round versus Congestion Window Size
+    # Plot Transmission Round and Congestion Window Size
     plt.plot(tcp_agent.transmission_rounds, tcp_agent.congestion_window_sizes)
     plt.xlabel('Transmission Round')
     plt.ylabel('Congestion Window Size')
