@@ -7,8 +7,9 @@
 4. [Traffic MAC Analyzer (MACshuffle.sh)](#traffic-mac-analyzer-MACshufflesh)
 	- [Execution](#execution)
 	- [Security in WPA3](#security-in-wpa3)
-5. []()
-	- []()
+5. [Mininet](#mininet)
+	- [Automating Network with the Mininet Python API](#automating-network-with-the-mininet-python-api)
+	- [Building Custom Network Topologies (MininetNetPrctice.py)](#building-custom-network-topologies-mininetnetpracticepy)
 ## Overview of 5G
 5G is the fifth generation of wireless technology that promises to deliver faster data transfer speeds, lower latency, and increased network capacity. It is designed to enable a wide range of new applications and use cases that were previously not possible with 4G technology. 5G technology is based on a new radio access technology which uses higher frequency bands (millimeter waves) than previous generations of wireless technology. This allows 5G networks to deliver much faster data transfer speed. In addition offer greater network capacity, which means they can support more devices for the growth of the Internet of Things (IoT) and also promises to reduce latency to under 1 millisecond, which is critical for real-time applications such as gaming, remote surgery, autonomous machines.  
 Overall, 5G is expected to revolutionize the way we use wireless technology and enable new applications that were previously not possible. However, the rollout of 5G networks is still ongoing and faces challenges such as the need for more infrastructure and the use of higher frequency bands that have limited coverage compared to lower frequency bands.  
@@ -73,29 +74,19 @@ WPA3 introduces a new forward secrecy (FS) encryption protocol that improves use
 - Security key management vulnerabilities:  
 WPA3 improves security key management over WPA2 by introducing the Simultaneous Authentication of Equals (SAE) key exchange protocol. SAE provides greater protection against dictionary attacks and allows you to set stronger passwords.  
 
-## qualcosa con Mininet
-cosa serve, quali altri ci sono. come e' stata utilizzata e i file relativi
-descrizione di quello che si vuole andare a fare
-### Reinforcement Learning
-In a Markov Decision Process(MDP) an AGENT is a decision maker that interact with the ENVIRONMENT that is placed in. These ACTIONS are sequential and every time an ACTION is taken, we get an observation of the STATE of the ENVIRONMENT. Based on the observation is chosen the ACTION to take; now the ENVIRONMENT goes into a new STATE and the AGENT gets a REWARD based on his ACTION. The AGENT not only wants to maximize the current REWARD but the cumulative REWARD over time.
-
-S stati, R rewards, A azioni
-sono legati da questa relazione f(St,At)=Rt+1
-la traiettoria the rappresentail processo sequenziale pio essere rappresentata come S0,A0,R1,A1,R2,S2,A2,R3,...
-
-foto del diagramma
-
-Se Stati e Reword sono un insieme finito le variabili Rt e St avranno ben definita una distribuzione di probablita. Questa distribuzione dipende dallo stato precedente e dall'azione al passo t-1. possiamo definire cosi la probabilita, dato s e s' in S e r in R e a in A allora la prbabilita di transito di passare allo stato s' con una ricomoensa r intraprendendo l'azione a
-p(s',r|s,a)=Pr{St=s',Rt=r|St-1=s,At-1=a}
-
-(Q-Learning is a tecnique of Reinforcement Learning)
-
-### Window Size
-cos'e'?...
-
-possiamo usare iperf per vedere l'impatto che ha cambiare la windows size.
-con wireshark possiamo vedere i pacchetti e controllare la windows size(dentro TCP->flags->Window)
-se fissiamo la windows size con 'iperf3 -c ip -t 10 -w 1000' ora i tcp datagram non possono essere piu grande di 1000, vedremo diminuire le prestazioni perche' prima di mandare altri dati dovremo aspettare di ricevere un acknowledgement dal ricevente.  le performaces non sono determinate alle condizioni della reta ma da quello che stanno facento il client e server.
-
-### Test TCP e RL in Mininet
-test di valutzione e foto dei grafi
+## Mininet
+Mininet is an open-source network emulator that allows users to create virtual networks on a single machine. It provides a realistic environment for testing and developing networking software without the need for expensive physical hardware. By leveraging Linux's network namespaces and lightweight virtualization techniques, Mininet can emulate a complete network topology.  
+Emulation, as exemplified by Mininet, aims to replicate the behavior of real systems by executing the actual software stack. It creates a faithful representation of a network by running real operating systems. Emulation preserves the intricacies and complexities of the system being emulated, enabling accurate performance analysis and software testing.  
+Simulation, on the other hand, involves creating a model of a system and observing its behavior under different conditions. It typically abstracts away certain details to focus on specific aspects of the system. In network simulation, models are built to analyze network protocols, traffic patterns, or the effects of various configurations.  
+### Automating Network with the Mininet Python API 
+The Mininet API for Python are a powerful tool that allows users to interact with and control Mininet virtual networks programmatically. API provides a comprehensive set of classes and methods that enable fine-grained control over network topologies and network elements such as hosts, switches, and links. Users can create custom network topologies by defining the desired number of hosts, switches, and their interconnections. They can also specify parameters such as link capacities, delays, and loss rates to emulate real-world network conditions accurately.  
+In addition to its network emulation capabilities, Mininet also provides support for various controllers, allowing users to simulate the behavior of network control planes. It offers a range of controller options, including popular ones like OpenFlow-based controllers such as Ryu, POX, and Floodlight. These controllers enables the development and testing of SDN (Software-Defined Networking) applications and algorithms in a controlled environment.  
+### Building Custom Network Topologies (MininetNetPractice.py)
+In order to build a custom network topology I used Mininet  and Python tools; in front of all to run the program we need to install those dependencies:
+```
+TODO dependencies
+```
+The *MininetNetPractice.py* program showcases the ability to parse and extract data from the configuration file to define the desired network topology. Using the Mininet API, the program reads and parses the *MininetTopo.conf* file, which contains information about the network topology. By leveraging the parsed data, the program creates a virtual network with the desired topology, replicating the specified network configuration. This allows for the creation of custom and complex network scenarios tailored to specific research or testing requirements.  
+Referring to a random topology, like the one in the figure below, we can create a configuration file that brings back exactly these parameters within the Mininet topology in order to interact with them. The configuration file *MininetTopo.conf* represents it. Some notes for the creation are reported there as a structure model, together with some constraints to be respected. Another important aspect to allow the network to function is to manage the routers routing table(**TODO in MininetTopo.conf**).
+<img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/MininetConf/topology.jpeg width="105%" height="105%">  
+I tested the mininet emulation software to reproduce a real situation of a cluster. Within this [file.pdf](https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/MininetConf/researchReport.pdf) it is possible to view all my comparison analysis and the conclusions I have reached.  
