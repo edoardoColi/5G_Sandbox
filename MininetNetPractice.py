@@ -107,13 +107,7 @@ def run_topology(config_file):
 			if line.startswith('#'):		#Skip comment
 				continue
 			parts = line.split(" ")
-			if parts[0] == 'N_route':			#Parse routing tables
-				name = parts[1]
-				pck_src = parts[2]
-				pck_nexthop = parts[3]
-				# cmd = 'ip route add ' + pck_src + ' via ' + pck_nexthop TODO
-				# (net.getNodeByName(name)).cmd(cmd)
-			elif parts[0] == 'route':			#Parse routing tables
+			if parts[0] == 'route':			#Parse routing tables
 				name = parts[1]
 				pck_src = parts[2]
 				pck_nexthop = parts[3]
@@ -127,6 +121,10 @@ def run_topology(config_file):
 	CLI(net)
 	net.stop()								#Stopping the network
 
+####
+# If you get "Exception: Please shut down the controller which is running on port 6653:"
+# use this to solve the issue: "sudo fuser -k 6653/tcp"
+####
 if __name__ == '__main__':
 	if '-f' in sys.argv:
 		try:
