@@ -7,7 +7,8 @@
 4. [Traffic MAC Analyzer (MACshuffle.sh)](#traffic-mac-analyzer-MACshufflesh)
 	- [Execution](#execution)
 	- [Security in WPA3](#security-in-wpa3)
-
+5. []()
+	- []()
 ## Overview of 5G
 5G is the fifth generation of wireless technology that promises to deliver faster data transfer speeds, lower latency, and increased network capacity. It is designed to enable a wide range of new applications and use cases that were previously not possible with 4G technology. 5G technology is based on a new radio access technology which uses higher frequency bands (millimeter waves) than previous generations of wireless technology. This allows 5G networks to deliver much faster data transfer speed. In addition offer greater network capacity, which means they can support more devices for the growth of the Internet of Things (IoT) and also promises to reduce latency to under 1 millisecond, which is critical for real-time applications such as gaming, remote surgery, autonomous machines.  
 Overall, 5G is expected to revolutionize the way we use wireless technology and enable new applications that were previously not possible. However, the rollout of 5G networks is still ongoing and faces challenges such as the need for more infrastructure and the use of higher frequency bands that have limited coverage compared to lower frequency bands.  
@@ -63,11 +64,38 @@ sudo tcpdump -i <interface> -U -w .MACprobe.tmp | ./MACshuffle.sh -p
 ```
 
 ### Security in WPA3
-WPA3 is a security protocol for Wi-Fi networks introduced by the Wi-Fi Alliance. WPA3 is a security technology that is implemented on Wi-Fi networks based on the 802.11 standard.  
+WPA3 is a security protocol for Wi-Fi networks introduced by the Wi-Fi Alliance. WPA3 is a security technology that is implemented on Wi-Fi networks based on the 802.11i standard.  
 WPA3 (Wi-Fi Protected Access 3) was introduced to improve the security of Wi-Fi networks over the previous version of WPA2 security. Among the main reasons why WPA3 was introduced are:  
-- Greater resistance to brute-force attacks:  
+- Greater resistance to offline brute-force(dictionary) attacks:  
 WPA3 uses a more robust authentication system than WPA2, based on the Dragonfly authentication algorithm. This makes it harder for attackers to crack down Wi-Fi network passwords.  
 - Privacy improvements:  
-WPA3 introduces a new forward secrecy encryption protocol that improves user privacy. This means that even if an attacker manages to decrypt the traffic of a Wi-Fi network session, they will not be able to decrypt the traffic of previous or subsequent sessions.  
+WPA3 introduces a new forward secrecy (FS) encryption protocol that improves user privacy. This means that even if an attacker manages to decrypt the traffic of a Wi-Fi network session, they will not be able to decrypt the traffic of previous or subsequent sessions.  
 - Security key management vulnerabilities:  
 WPA3 improves security key management over WPA2 by introducing the Simultaneous Authentication of Equals (SAE) key exchange protocol. SAE provides greater protection against dictionary attacks and allows you to set stronger passwords.  
+
+## qualcosa con Mininet
+cosa serve, quali altri ci sono. come e' stata utilizzata e i file relativi
+descrizione di quello che si vuole andare a fare
+### Reinforcement Learning
+In a Markov Decision Process(MDP) an AGENT is a decision maker that interact with the ENVIRONMENT that is placed in. These ACTIONS are sequential and every time an ACTION is taken, we get an observation of the STATE of the ENVIRONMENT. Based on the observation is chosen the ACTION to take; now the ENVIRONMENT goes into a new STATE and the AGENT gets a REWARD based on his ACTION. The AGENT not only wants to maximize the current REWARD but the cumulative REWARD over time.
+
+S stati, R rewards, A azioni
+sono legati da questa relazione f(St,At)=Rt+1
+la traiettoria the rappresentail processo sequenziale pio essere rappresentata come S0,A0,R1,A1,R2,S2,A2,R3,...
+
+foto del diagramma
+
+Se Stati e Reword sono un insieme finito le variabili Rt e St avranno ben definita una distribuzione di probablita. Questa distribuzione dipende dallo stato precedente e dall'azione al passo t-1. possiamo definire cosi la probabilita, dato s e s' in S e r in R e a in A allora la prbabilita di transito di passare allo stato s' con una ricomoensa r intraprendendo l'azione a
+p(s',r|s,a)=Pr{St=s',Rt=r|St-1=s,At-1=a}
+
+(Q-Learning is a tecnique of Reinforcement Learning)
+
+### Window Size
+cos'e'?...
+
+possiamo usare iperf per vedere l'impatto che ha cambiare la windows size.
+con wireshark possiamo vedere i pacchetti e controllare la windows size(dentro TCP->flags->Window)
+se fissiamo la windows size con 'iperf3 -c ip -t 10 -w 1000' ora i tcp datagram non possono essere piu grande di 1000, vedremo diminuire le prestazioni perche' prima di mandare altri dati dovremo aspettare di ricevere un acknowledgement dal ricevente.  le performaces non sono determinate alle condizioni della reta ma da quello che stanno facento il client e server.
+
+### Test TCP e RL in Mininet
+test di valutzione e foto dei grafi
