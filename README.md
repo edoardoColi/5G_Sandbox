@@ -9,7 +9,7 @@
 	- [Security in WPA3](#security-in-wpa3)
 5. [Mininet](#mininet)
 	- [Automating Network with the Mininet Python API](#automating-network-with-the-mininet-python-api)
-	- [Building Custom Network Topologies (MininetNetPrctice.py)](#building-custom-network-topologies-mininetnetpracticepy)
+	- [Building Custom Network Topologies (MininetNetPractice.py)](#building-custom-network-topologies-mininetnetpracticepy)
 ## Overview of 5G
 5G is the fifth generation of wireless technology that promises to deliver faster data transfer speeds, lower latency, and increased network capacity. It is designed to enable a wide range of new applications and use cases that were previously not possible with 4G technology. 5G technology is based on a new radio access technology which uses higher frequency bands (millimeter waves) than previous generations of wireless technology. This allows 5G networks to deliver much faster data transfer speed. In addition offer greater network capacity, which means they can support more devices for the growth of the Internet of Things (IoT) and also promises to reduce latency to under 1 millisecond, which is critical for real-time applications such as gaming, remote surgery, autonomous machines.  
 Overall, 5G is expected to revolutionize the way we use wireless technology and enable new applications that were previously not possible. However, the rollout of 5G networks is still ongoing and faces challenges such as the need for more infrastructure and the use of higher frequency bands that have limited coverage compared to lower frequency bands.  
