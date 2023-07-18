@@ -1,7 +1,5 @@
 # Usefull to know
-# sudo fuser -k 6653/tcp
-# sudo mn -c
-
+TODO better
 
 Per far funzionare le cose serve:
 
