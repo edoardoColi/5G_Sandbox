@@ -9,7 +9,7 @@
 _FILE_TMP=".MACrandom.tmp"
 _FILE2_TMP=".MAClistall.tmp"
 _FILE3_TMP=".MACprobe.tmp"
-#Reverence strings
+#Reference strings
 _FILE_REF=''
 _SSID_REF=''
 #Flags for optional variables
@@ -276,7 +276,7 @@ else
 	case "${flag}" in
 		e) _ENHANCED_FLAG='true' ;;
 		f) _FILE_REF="${OPTARG}" ;;
-		h) usage $0 
+		h) usage $0
 		exit 0;;
 		i) _SSID_REF="${OPTARG}" ;;
 		n) _UP_TO="${OPTARG}" ;;
