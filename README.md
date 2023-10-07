@@ -84,7 +84,7 @@ In addition to its network emulation capabilities, Mininet also provides support
 ### Building Custom Network Topologies (MininetNetPractice.py)
 In order to build a custom network topology I used Mininet  and Python tools; in front of all to run the program we need to install those dependencies:
 ```
-sudo apt install python3 python3-pip openvswitch-testcontroller mininet;  
+sudo apt install python3 python3-pip openvswitch-testcontroller mininet;
 pip3 install --upgrade pip;  
 pip3 install mininet colorama configparser ryu pillow pox matplotlib;  
 ```
