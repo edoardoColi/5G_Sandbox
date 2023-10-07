@@ -3,20 +3,20 @@ TODO better
 
 Per far funzionare le cose serve:
 
-sudo apt-get install python3
+0-sudo apt-get install python3
 python3 --version		//This command should display the version of Python 3.x that was installed
 
-sudo apt-get install openvswitch-testcontroller //non serve davvero
-sudo apt-get install python3-pip
+5-sudo apt-get install openvswitch-testcontroller //non serve davvero
+1-sudo apt-get install python3-pip
 pip3 install configparser
-pip3 install colorama
-pip3 install mininet
-pip3 install ryu
+2-pip3 install colorama
+4-pip3 install mininet
+5?-pip3 install ryu
 pip3 install --upgrade pip
 pip3 install pillow
 pip3 install pox
 pip3 install matplotlib
-sudo apt-get install mininet
+3-sudo apt-get install mininet
 
 # Vedo i dettagli con
 > X route
