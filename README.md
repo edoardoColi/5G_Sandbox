@@ -99,5 +99,6 @@ I tested the mininet emulation software to reproduce a real situation of a clust
 
 Using Docker as a sandbox offers a powerful solution for isolating and testing applications and services in a controlled environment. Docker containers provide a lightweight, reproducible way to create sandboxes for development, testing, or experimentation. By encapsulating an application and its dependencies within a container, developers can ensure consistency across different environments, making it easier to troubleshoot issues and prevent conflicts. Docker's sandboxing capabilities also enhance security by isolating processes and resources, reducing the risk of unintended interactions or vulnerabilities. Whether for development, QA, or exploring new software, Docker's sandboxing approach simplifies the management of isolated environments, fostering agility and reliability in software development workflows.
 ```
-docker run -it --rm buntu /bin/sh
+docker run -it --rm ubuntu /bin/sh
+docker system prune --all --volumes --force   #To clean after use
 ```
