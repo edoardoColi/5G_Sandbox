@@ -84,9 +84,9 @@ In addition to its network emulation capabilities, Mininet also provides support
 ### Building Custom Network Topologies (MininetNetPractice.py)
 In order to build a custom network topology I used Mininet  and Python tools; in front of all to run the program we need to install those dependencies:
 ```
-apt install python3 python3-pip openvswitch-testcontroller mininet  
-pip3 install --upgrade pip  
-pip3 install mininet colorama configparser ryu pillow pox matplotlib  
+sudo apt install python3 python3-pip openvswitch-testcontroller mininet;  
+pip3 install --upgrade pip;  
+pip3 install mininet colorama configparser ryu pillow pox matplotlib;  
 ```
 The *MininetNetPractice.py* program showcases the ability to parse and extract data from the configuration file to define the desired network topology. Using the Mininet API, the program reads and parses the *MininetTopo.conf* file, which contains information about the network topology. By leveraging the parsed data, the program creates a virtual network with the desired topology, replicating the specified network configuration. This allows for the creation of custom and complex network scenarios tailored to specific research or testing requirements.  
 Referring to a random topology, like the one in the figure below, we can create a configuration file that brings back exactly these parameters within the Mininet topology in order to interact with them. The configuration file *MininetTopo.conf* represents it. Some notes for the creation are reported there as a structure model, together with some constraints to be respected. Another important aspect to allow the network to function is to manage the routers routing table(**TODO inside MininetTopo.conf**).
