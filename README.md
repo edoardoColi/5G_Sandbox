@@ -10,6 +10,7 @@
 5. [Mininet](#mininet)
 	- [Automating Network with the Mininet Python API](#automating-network-with-the-mininet-python-api)
 	- [Building Custom Network Topologies (MininetNetPractice.py)](#building-custom-network-topologies-mininetnetpracticepy)
+6. [Why sandbox?](#why-sandbox)
 ## Overview of 5G
 5G is the fifth generation of wireless technology that promises to deliver faster data transfer speeds, lower latency, and increased network capacity. It is designed to enable a wide range of new applications and use cases that were previously not possible with 4G technology. 5G technology is based on a new radio access technology which uses higher frequency bands (millimeter waves) than previous generations of wireless technology. This allows 5G networks to deliver much faster data transfer speed. In addition offer greater network capacity, which means they can support more devices for the growth of the Internet of Things (IoT) and also promises to reduce latency to under 1 millisecond, which is critical for real-time applications such as gaming, remote surgery, autonomous machines.  
 Overall, 5G is expected to revolutionize the way we use wireless technology and enable new applications that were previously not possible. However, the rollout of 5G networks is still ongoing and faces challenges such as the need for more infrastructure and the use of higher frequency bands that have limited coverage compared to lower frequency bands.  
@@ -93,3 +94,10 @@ The *MininetNetPractice.py* program showcases the ability to parse and extract d
 Referring to a random topology, like the one in the figure below, we can create a configuration file that brings back exactly these parameters within the Mininet topology in order to interact with them. The configuration file *MininetTopo.conf* represents it. Some notes for the creation are reported there as a structure model, together with some constraints to be respected. Another important aspect to allow the network to function is to manage the routers routing table(**TODO inside MininetTopo.conf**).
 <img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/MininetConf/topology.jpeg width="105%" height="105%">  
 I tested the mininet emulation software to reproduce a real situation of a cluster. Within this [file.pdf](https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/docs/MininetConf/researchReport.pdf) it is possible to view all my comparison analysis and the conclusions I have reached.  
+
+## Why sandbox?
+
+Using Docker as a sandbox offers a powerful solution for isolating and testing applications and services in a controlled environment. Docker containers provide a lightweight, reproducible way to create sandboxes for development, testing, or experimentation. By encapsulating an application and its dependencies within a container, developers can ensure consistency across different environments, making it easier to troubleshoot issues and prevent conflicts. Docker's sandboxing capabilities also enhance security by isolating processes and resources, reducing the risk of unintended interactions or vulnerabilities. Whether for development, QA, or exploring new software, Docker's sandboxing approach simplifies the management of isolated environments, fostering agility and reliability in software development workflows.
+```
+docker run -it --rm buntu /bin/sh
+```
