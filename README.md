@@ -211,7 +211,7 @@ $ git clone https://github.com/RiccardoFedrizzi/comnetsemu_5Gnet.git
 $ cd ~/comnetsemu/app/comnetsemu_5Gnet/build
 $ ./build.sh
 ```
-or alternatively download them from DockerHub, so instead of *build.sh* use
+or alternatively download docker images from DockerHub, so instead of *build.sh* use
 ```
 $ ./dockerhub_pull.sh
 ```
