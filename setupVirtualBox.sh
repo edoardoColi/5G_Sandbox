@@ -67,17 +67,22 @@ fi
 echo -e "${YELLOW}Do you want Vagrant too?: [y/N]${DEFAULT}"
 read -r confirmation
 if [[ "$confirmation" =~ ^[Yy]|[Yy][Ee][Ss]$ ]]; then
-	echo -e "${BLUE}Adding Vagrant's official GPG key${DEFAULT}"
-		wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+	echo "Installing..."
+	if [ $(dpkg -l | grep -c "vagrant " ) -eq 0 ]; then
+		echo -e "${BLUE}Adding Vagrant's official GPG key${DEFAULT}"
+			wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
 
-		echo \
-		"deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com \
-		$(. /etc/os-release && echo $VERSION_CODENAME) main" | \
-		sudo tee /etc/apt/sources.list.d/hashicorp.list
-		
-		sudo apt-get update -y
-		sudo apt-get install -y \
-			vagrant
+			echo \
+			"deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com \
+			$(. /etc/os-release && echo $VERSION_CODENAME) main" | \
+			sudo tee /etc/apt/sources.list.d/hashicorp.list
+
+			sudo apt-get update -y
+			sudo apt-get install -y \
+				vagrant
+	else
+		echo -e "${GREEN}  \"Some packet like 'vagrant ' installed, seems VirtualBox is already Installed\"${DEFAULT}"
+	fi
 else
 	echo "You choose no"
 fi

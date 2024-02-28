@@ -10,7 +10,11 @@
 5. [Mininet](#mininet)
 	- [Automating Network with the Mininet Python API](#automating-network-with-the-mininet-python-api)
 	- [Building Custom Network Topologies (MininetNetPractice.py)](#building-custom-network-topologies-mininetnetpracticepy)
-6. [Why sandbox?](#why-sandbox)
+6. [5G Network simulation](#5g-network-simulation)
+	- [Vagrant commands](#vagrant-commands)
+	- [Example overview](#example-overview)
+	- [Example execution](#example-execution)
+7. [Why sandbox?](#why-sandbox)
 ## Overview of 5G
 5G is the fifth generation of wireless technology that promises to deliver faster data transfer speeds, lower latency, and increased network capacity. It is designed to enable a wide range of new applications and use cases that were previously not possible with 4G technology. 5G technology is based on a new radio access technology which uses higher frequency bands (millimeter waves) than previous generations of wireless technology. This allows 5G networks to deliver much faster data transfer speed. In addition offer greater network capacity, which means they can support more devices for the growth of the Internet of Things (IoT) and also promises to reduce latency to under 1 millisecond, which is critical for real-time applications such as gaming, remote surgery, autonomous machines.  
 Overall, 5G is expected to revolutionize the way we use wireless technology and enable new applications that were previously not possible. However, the rollout of 5G networks is still ongoing and faces challenges such as the need for more infrastructure and the use of higher frequency bands that have limited coverage compared to lower frequency bands.  
@@ -95,6 +99,126 @@ Referring to a random topology, like the one in the figure below, we can create 
 <img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/MininetConf/topology.jpeg width="105%" height="105%">  
 I tested the mininet emulation software to reproduce a real situation of a cluster. Within this [file.pdf](https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/docs/MininetConf/researchReport.pdf) it is possible to view all my comparison analysis and the conclusions I have reached.  
 
+## 5G Network simulation
+For emulating and testing a 5G Network we are going to use ComNetsEmu, a testbed and network emulator designed for the NFV/SDN teaching book "Computing in Communication Networks: From Theory to Practice".  
+We are taking all the installing information from official [website](https://git.comnets.net/public-repo/comnetsemu), if needed there is also a dumped comnetsemu public-repo webpage in [this pdf](https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/docs/Dump_public-repo_comnetsemu.pdf). The recommended and easiest way to install ComNetsEmu is to use Vagrant and Virtualbox; for this reason I provided a *setupVirtualBox.sh* script to automate the installation.  
+Long story short commands are:
+```
+$ cd ~
+$ git clone https://git.comnets.net/public-repo/comnetsemu.git
+$ cd ./comnetsemu
+$ vagrant up comnetsemu
+  #Take a break and wait about 15 minutes
+
+  #SSH into the VM when it's up and ready (The ComNetsEmu banner is printed on the screen)
+$ vagrant ssh comnetsemu
+```
+Once in the Virtual Machine upgrade source code of ComNetsEmu Python package with:
+```
+$ cd ~/comnetsemu
+$ git checkout master
+$ git pull origin master
+
+$ cd ~/comnetsemu/util
+$ bash ./install.sh -u
+  #Rerun if the result is unsatisfactory
+
+$ cd ~/comnetsemu/
+$ sudo make test && sudo make test-examples
+```
+**Warning**: Main developers of ComNetsEmu does not use Windows
+and does not have a Windows machine to test on.  
+If you are using Windows, they recommend using [MobaXterm](https://mobaxterm.mobatek.net/)
+as the console. This should solve problems opening `xterm` in the emulator.  
+```
+Session <-- To create a new session in MobaXterm  
+    SSH > Remote host: 127.0.0.1
+        > Specify username: vagrant
+		> port: 2222
+		Advanced SSH settings > Enable X11-Forwarding
+		                      > Remote environment: Interactive shell
+		> password: vagrant
+```
+### Vagrant commands
+Vagrant uses "base boxes" to bring up your local machines. These are several Vagrant commands which you can use to control your box.  
+Some of the important ones are:  
+- **vagrant up** : Bring a box online.  
+- **vagrant status** : Show current box status.  
+- **vagrant suspend** : Pause the current box.  
+- **vagrant resume** : Resume the current box.  
+- **vagrant halt** : Shutdown the current box.  
+- **vagrant destroy** : Destroy the current box. By running this command, you will lose any data stored on the box.  
+- **vagrant snapshot** : Take a snapshot of the current box.  
+
+[Pointer to more details...](https://opensource.com/article/21/9/test-vagrant)
+### Example Overview
+The 5G architecture is designed to be more flexible, scalableand adaptable to the needs of various applications and services. Here we have the key components of the 5G architecture  
+<img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/5G_architecture.png width=1000px></img>
+
+**Acronymes list:**
+- *User Equipement* UE
+- *Evolved Packet Core* EPC
+- *Control Plane* CP
+- *User Plane*
+- *Packet Data Network*
+- *PDN Gateway* PGW
+- *Home Subscriber Server*
+- *evolved NodeB* eNB
+- *Evolved Packet System*
+- *Radio Access Network*
+- *Packet Delivery Network*
+- *qqqqq* UPF
+- *qqqqq*
+
+There are many open-source implementation of 5G both for RAN and Core.  
+For the Radio Access Network we are going to use [UERANSIM](https://github.com/aligungr/UERANSIM).  
+For the 5G Core Network we are going to use [OPEN5gs](https://github.com/open5gs).  
+In the context of alternatives [OpenAirInterface](https://github.com/openairinterface) presents itself as another viable option, both for [RAN](https://openairinterface.org/oai-5g-ran-project/) and [Core](https://openairinterface.org/oai-5g-core-network-project/).  
+The testing scenario includes 5 DockerHosts as shown in the figure below. The UE starts two PDU session one for each slice defined in the core network.  
+<img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/5G_topology.jpg width=1000px></img>
+
+<!-- Observe the Round Trip Time using uesimtun0 (slice 1 - reaching the UPF in the "cloud DC" with DNN="internet" ) and ueransim1 (slice 2 - reaching the UPF in the 'mec DC' with DNN="mec")
+
+nella simulazione andiamo ad usare 'Open5gs' implementation Per 5G Core implementation.
+nella simulazione usiamo 'UERANSIM' implementation Per RAN implementation
+
+Immagine della topologia della simulazione...
+(5G we have one phisical network and we want network sliceing, on same infrastructure. We want to try this in the simulation)
+Virtual host "upf_emc" -> "user-plane functionalities_multi-edge cloud" (simula near the edge, poca latenza)
+Virtual host "upf" (simula il cloud, molta latenza)
+Virtual host "cp" -> "Control plane" (con anche altre funzionalita della reta)
+AMF=Access Mobility Function?
+SMF=S... Mobility Function?
+	//{22:50} intervento del prof.
+
+	//{40:20} intervento del prof.
+poi immagini delle implementazioni per GNB e UE
+
+Le slices che abbiamo fatto sono quelle verdi, una per Edge e una per Cloud
+Immagine della network implementation in generale con switch e cose
+altre immagini di configurazioni
+	//{1:10:20} intervento del prof.
+
+ifconfig -- dovremmo essere capaci di vedere i due tunnel uesimtun0 e uesimtun1 -->
+
+### Example Execution
+The previous overview is based on the 5G deployment in comnetsemu of [Riccardo Fedrizzi](https://github.com/RiccardoFedrizzi). We con start cloning his project and building it
+```
+$ cd ~/comnetsemu/app
+$ git clone https://github.com/RiccardoFedrizzi/comnetsemu_5Gnet.git
+$ cd ~/comnetsemu/app/comnetsemu_5Gnet/build
+$ ./build.sh
+```
+or alternatively download them from DockerHub, so instead of *build.sh* use
+```
+$ ./dockerhub_pull.sh
+```
+Execution **dependencies** (Python packages: `sudo pip3 install pymongo`) must be installed befor running the examples.  
+In the directory we will find [*example1.py*](https://github.com/RiccardoFedrizzi/comnetsemu_5Gnet/blob/main/example1.py) and [*example2.py*](https://github.com/RiccardoFedrizzi/comnetsemu_5Gnet/blob/main/example2.py)
+- the first one is about using webUI to add UE, and we [refer to this](https://github.com/RiccardoFedrizzi/comnetsemu_5Gnet?tab=readme-ov-file#running-example1py).
+- the second creates the same environment of *example1.py* but the open5GS control plane configuration is done programmatically without using the webUI, we [refer to this](https://github.com/RiccardoFedrizzi/comnetsemu_5Gnet?tab=readme-ov-file#running-example2py).  
+
+**! ! !** To enter the containers must be executed `sudo python3 example2.py` and in another terminal `sudo ./enter_container.sh ue`**! ! !**  
 ## Why sandbox?
 
 Using Docker as a sandbox offers a powerful solution for isolating and testing applications and services in a controlled environment. Docker containers provide a lightweight, reproducible way to create sandboxes for development, testing, or experimentation. By encapsulating an application and its dependencies within a container, developers can ensure consistency across different environments, making it easier to troubleshoot issues and prevent conflicts. Docker's sandboxing capabilities also enhance security by isolating processes and resources, reducing the risk of unintended interactions or vulnerabilities. Whether for development, QA, or exploring new software, Docker's sandboxing approach simplifies the management of isolated environments, fostering agility and reliability in software development workflows.
