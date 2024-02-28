@@ -152,7 +152,8 @@ Some of the important ones are:
 
 [Pointer to more details...](https://opensource.com/article/21/9/test-vagrant)
 ### Example Overview
-The 5G architecture is designed to be more flexible, scalableand adaptable to the needs of various applications and services. Here we have the key components of the 5G architecture  
+The 5G architecture is designed to be more flexible, scalableand adaptable to the needs of various applications and services. Here we have the key components of the 5G architecture.  
+
 <img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/5G_architecture.png width=1000px></img>
 
 **Acronymes list:**
@@ -175,6 +176,7 @@ For the Radio Access Network we are going to use [UERANSIM](https://github.com/a
 For the 5G Core Network we are going to use [OPEN5gs](https://github.com/open5gs).  
 In the context of alternatives [OpenAirInterface](https://github.com/openairinterface) presents itself as another viable option, both for [RAN](https://openairinterface.org/oai-5g-ran-project/) and [Core](https://openairinterface.org/oai-5g-core-network-project/).  
 The testing scenario includes 5 DockerHosts as shown in the figure below. The UE starts two PDU session one for each slice defined in the core network.  
+
 <img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/5G_topology.jpg width=1000px></img>
 
 <!-- Observe the Round Trip Time using uesimtun0 (slice 1 - reaching the UPF in the "cloud DC" with DNN="internet" ) and ueransim1 (slice 2 - reaching the UPF in the 'mec DC' with DNN="mec")
