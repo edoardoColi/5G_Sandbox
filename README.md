@@ -154,7 +154,7 @@ Some of the important ones are:
 ### Example Overview
 The 5G architecture is designed to be more flexible, scalableand adaptable to the needs of various applications and services. Here we have the key components of the 5G architecture.  
 
-<img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/5G_architecture.png width=1000px></img>
+<img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/5G_architecture.jpg width=1000px></img>
 
 **Acronymes list:**
 - *User Equipement* UE
@@ -165,12 +165,8 @@ The 5G architecture is designed to be more flexible, scalableand adaptable to th
 - *Access and Mobility Function* AMF
 - *Session Management Function* SMF
 - *Policy Control Function* PCF
-- *Home Subscriber Server* HSS
 - *Radio Access Network* RAN
-- *Packet Data Network* PDN
-- *PDN Gateway* PGW
 - *Evolved Packet System* EPS
-- *Packet Delivery Network* PDN
 - *Evolved Packet Core* EPC
 
 There are many open-source implementation of 5G both for RAN and Core.  
