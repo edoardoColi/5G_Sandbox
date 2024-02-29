@@ -5,15 +5,15 @@
 2. [Overview of 802.11](#overview-of-80211)
 3. [Comparison of 5G and 802.11](#comparison-of-5g-and-80211)
 4. [Traffic MAC Analyzer (MACshuffle.sh)](#traffic-mac-analyzer-MACshufflesh)
-	- [Execution](#execution)
-	- [Security in WPA3](#security-in-wpa3)
+    - [Execution](#execution)
+    - [Security in WPA3](#security-in-wpa3)
 5. [Mininet](#mininet)
-	- [Automating Network with the Mininet Python API](#automating-network-with-the-mininet-python-api)
-	- [Building Custom Network Topologies (MininetNetPractice.py)](#building-custom-network-topologies-mininetnetpracticepy)
+    - [Automating Network with the Mininet Python API](#automating-network-with-the-mininet-python-api)
+    - [Building Custom Network Topologies (MininetNetPractice.py)](#building-custom-network-topologies-mininetnetpracticepy)
 6. [5G Network simulation](#5g-network-simulation)
-	- [Vagrant commands](#vagrant-commands)
-	- [Example overview](#example-overview)
-	- [Example execution](#example-execution)
+    - [Vagrant commands](#vagrant-commands)
+    - [Example overview](#example-overview)
+    - [Example execution](#example-execution)
 7. [Why sandbox?](#why-sandbox)
 ## Overview of 5G
 5G is the fifth generation of wireless technology that promises to deliver faster data transfer speeds, lower latency, and increased network capacity. It is designed to enable a wide range of new applications and use cases that were previously not possible with 4G technology. 5G technology is based on a new radio access technology which uses higher frequency bands (millimeter waves) than previous generations of wireless technology. This allows 5G networks to deliver much faster data transfer speed. In addition offer greater network capacity, which means they can support more devices for the growth of the Internet of Things (IoT) and also promises to reduce latency to under 1 millisecond, which is critical for real-time applications such as gaming, remote surgery, autonomous machines.  
@@ -134,10 +134,10 @@ as the console. This should solve problems opening `xterm` in the emulator.
 Session <-- To create a new session in MobaXterm  
     SSH > Remote host: 127.0.0.1
         > Specify username: vagrant
-		> port: 2222
-		Advanced SSH settings > Enable X11-Forwarding
-		                      > Remote environment: Interactive shell
-		> password: vagrant
+        > port: 2222
+        Advanced SSH settings > Enable X11-Forwarding
+                            > Remote environment: Interactive shell
+        > password: vagrant
 ```
 ### Vagrant commands
 Vagrant uses "base boxes" to bring up your local machines. These are several Vagrant commands which you can use to control your box.  
@@ -191,15 +191,15 @@ Virtual host "upf" (simula il cloud, molta latenza)
 Virtual host "cp" -> "Control plane" (con anche altre funzionalita della reta)
 AMF=Access Mobility Function?
 SMF=S... Mobility Function?
-	//{22:50} intervento del prof.
+    //{22:50} intervento del prof.
 
-	//{40:20} intervento del prof.
+    //{40:20} intervento del prof.
 poi immagini delle implementazioni per GNB e UE
 
 Le slices che abbiamo fatto sono quelle verdi, una per Edge e una per Cloud
 Immagine della network implementation in generale con switch e cose
 altre immagini di configurazioni
-	//{1:10:20} intervento del prof.
+    //{1:10:20} intervento del prof.
 
 ifconfig -- dovremmo essere capaci di vedere i due tunnel uesimtun0 e uesimtun1 -->
 
