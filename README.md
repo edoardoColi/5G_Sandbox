@@ -158,18 +158,20 @@ The 5G architecture is designed to be more flexible, scalableand adaptable to th
 
 **Acronymes list:**
 - *User Equipement* UE
-- *Evolved Packet Core* EPC
 - *Control Plane* CP
-- *User Plane*
-- *Packet Data Network*
-- *PDN Gateway* PGW
-- *Home Subscriber Server*
+- *User Plane* UP
 - *evolved NodeB* eNB
-- *Evolved Packet System*
-- *Radio Access Network*
-- *Packet Delivery Network*
-- *qqqqq* UPF
-- *qqqqq*
+- *User Plane Function* UPF
+- *Access and Mobility Function* AMF
+- *Session Management Function* SMF
+- *Policy Control Function* PCF
+- *Home Subscriber Server* HSS
+- *Radio Access Network* RAN
+- *Packet Data Network* PDN
+- *PDN Gateway* PGW
+- *Evolved Packet System* EPS
+- *Packet Delivery Network* PDN
+- *Evolved Packet Core* EPC
 
 There are many open-source implementation of 5G both for RAN and Core.  
 For the Radio Access Network we are going to use [UERANSIM](https://github.com/aligungr/UERANSIM).  
@@ -223,7 +225,7 @@ In the directory we will find [*example1.py*](https://github.com/RiccardoFedrizz
 **! ! !** To enter the containers must be executed `sudo python3 example2.py` and in another terminal `sudo ./enter_container.sh ue`**! ! !**  
 ## Why sandbox?
 
-Using Docker as a sandbox offers a powerful solution for isolating and testing applications and services in a controlled environment. Docker containers provide a lightweight, reproducible way to create sandboxes for development, testing, or experimentation. By encapsulating an application and its dependencies within a container, developers can ensure consistency across different environments, making it easier to troubleshoot issues and prevent conflicts. Docker's sandboxing capabilities also enhance security by isolating processes and resources, reducing the risk of unintended interactions or vulnerabilities. Whether for development, QA, or exploring new software, Docker's sandboxing approach simplifies the management of isolated environments, fostering agility and reliability in software development workflows.
+Using Docker, or a Virtual Machine, as a sandbox offers a powerful solution for isolating and testing applications and services in a controlled environment. Docker containers provide a lightweight, reproducible way to create sandboxes for development, testing, or experimentation. By encapsulating an application and its dependencies within a container, developers can ensure consistency across different environments, making it easier to troubleshoot issues and prevent conflicts. Docker's sandboxing capabilities also enhance security by isolating processes and resources, reducing the risk of unintended interactions or vulnerabilities. Whether for development, QA, or exploring new software, Docker's sandboxing approach simplifies the management of isolated environments, fostering agility and reliability in software development workflows.
 ```
 docker run -it --rm ubuntu /bin/sh
 docker system prune --all --volumes --force #Remove unused data 
