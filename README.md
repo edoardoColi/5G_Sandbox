@@ -139,7 +139,7 @@ Session <-- To create a new session in MobaXterm
                             > Remote environment: Interactive shell
         > password: vagrant
 ```
-Windows Subsystem Linux(wsl) is a valid option for running Ubuntu on Windows([link](https://youtu.be/X-DHaQLrBi8?feature=shared)).
+Windows Subsystem Linux(wsl) is a valid option for running Ubuntu on Windows([setup link](https://youtu.be/X-DHaQLrBi8?feature=shared)).
 ### Vagrant commands
 Vagrant uses "base boxes" to bring up your local machines. These are several Vagrant commands which you can use to control your box.  
 Some of the important ones are:  
