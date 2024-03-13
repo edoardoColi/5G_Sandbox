@@ -178,30 +178,11 @@ The testing scenario includes 5 DockerHosts as shown in the figure below. The UE
 
 <img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/5G_topology.jpg width=1000px></img>
 
-<!-- Observe the Round Trip Time using uesimtun0 (slice 1 - reaching the UPF in the "cloud DC" with DNN="internet" ) and ueransim1 (slice 2 - reaching the UPF in the 'mec DC' with DNN="mec")
+*upf_mec*: Represents the user-plane functionalities in the multi-edge cloud, simulating near-edge scenarios with low latency.  
+*upf_cld*: Simulates the cloud environment, characterized by higher latency.  
+*cp*: Represents the control plane, incorporating additional network functionalities.  
 
-nella simulazione andiamo ad usare 'Open5gs' implementation Per 5G Core implementation.
-nella simulazione usiamo 'UERANSIM' implementation Per RAN implementation
-
-Immagine della topologia della simulazione...
-(5G we have one phisical network and we want network sliceing, on same infrastructure. We want to try this in the simulation)
-Virtual host "upf_emc" -> "user-plane functionalities_multi-edge cloud" (simula near the edge, poca latenza)
-Virtual host "upf" (simula il cloud, molta latenza)
-Virtual host "cp" -> "Control plane" (con anche altre funzionalita della reta)
-AMF=Access Mobility Function?
-SMF=S... Mobility Function?
-    //{22:50} intervento del prof.
-
-    //{40:20} intervento del prof.
-poi immagini delle implementazioni per GNB e UE
-
-Le slices che abbiamo fatto sono quelle verdi, una per Edge e una per Cloud
-Immagine della network implementation in generale con switch e cose
-altre immagini di configurazioni
-    //{1:10:20} intervento del prof.
-
-ifconfig -- dovremmo essere capaci di vedere i due tunnel uesimtun0 e uesimtun1 -->
-
+In this simulation, we investigate the Round Trip Time (RTT) using two distinct slices: slice 1 involves reaching the User Plane Function (UPF) in the “cloud data center” with a designated DNN (Data Network Name) of “internet,” while slice 2 focuses on reaching the UPF in the “multi-access edge computing (MEC) data center” with a DNN of “mec”.  
 ### Example Execution
 The previous overview is based on the 5G deployment in comnetsemu of [Riccardo Fedrizzi](https://github.com/RiccardoFedrizzi). We con start cloning his project and building it
 ```
