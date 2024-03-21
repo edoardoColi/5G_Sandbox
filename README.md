@@ -12,6 +12,7 @@
     - [Building Custom Network Topologies (MininetNetPractice.py)](#building-custom-network-topologies-mininetnetpracticepy)
 6. [5G Network simulation](#5g-network-simulation)
     - [Vagrant commands](#vagrant-commands)
+    - [VM from scratch bypassing Vagrant](#vm-from-scratch-bypassing-vagrant)
     - [Example overview](#example-overview)
     - [Example execution](#example-execution)
 7. [Why sandbox?](#why-sandbox)
@@ -111,6 +112,8 @@ $ vagrant up comnetsemu
   #Take a break and wait about 15 minutes
 
   #SSH into the VM when it's up and ready (The ComNetsEmu banner is printed on the screen)
+  # User:     vagrant 
+  # Password: vagrant
 $ vagrant ssh comnetsemu
 ```
 Once in the Virtual Machine upgrade source code of ComNetsEmu Python package with:
@@ -143,19 +146,34 @@ Windows Subsystem Linux(wsl) is a valid option for running Ubuntu on Windows([se
 ### Vagrant commands
 Vagrant uses "base boxes" to bring up your local machines. These are several Vagrant commands which you can use to control your box.  
 Some of the important ones are:  
-- **vagrant up** : Bring a box online.  
-- **vagrant status** : Show current box status.  
-- **vagrant suspend** : Pause the current box.  
-- **vagrant resume** : Resume the current box.  
-- **vagrant halt** : Shutdown the current box.  
-- **vagrant destroy** : Destroy the current box. By running this command, you will lose any data stored on the box.  
-- **vagrant snapshot** : Take a snapshot of the current box.  
+- **vagrant up [box_name]** : Bring a box online.  
+- **vagrant status [box_name]** : Show current box status.  
+- **vagrant ssh [box_name]** : Opens an SSH session into the running VM.  
+- **vagrant suspend [box_name]** : Pause the current box.  
+- **vagrant resume [box_name]** : Resume the current box.  
+- **vagrant halt [box_name]** : Shutdown the current box.  
+- **vagrant destroy [box_name]** : Destroy the current box. By running this command, you will lose any data stored on the box.  
+- **vagrant snapshot [box_name]** : Take a snapshot of the current box.  
 
 [Pointer to more details...](https://opensource.com/article/21/9/test-vagrant)
+### VM from Scratch bypassing Vagrant
+In case Linux or Windows Subsystem for Linux (WSL) isn't feasible, and employing Vagrant with the provided Vagrantfile by comnestemu is not an option, it's possible to construct a proper working environment using VirtualBox starting from an Ubuntu ISO file. Doing this in a VM and not in your OS is recommended due to the necessity of manipulating network parameters, thereby maintaining the integrity of the base operating system installation. By employing a virtual machine, we ensure that any alterations made to network configurations are contained within the virtualized environment, keeping the host system unaffected and ensuring a clean operational environment.  
+Here's a step-by-step guide on how to set up a virtual environment:  
+1. **Install VirtualBox**: Begin by downloading and installing VirtualBox on your system.  
+2. **Download Ubuntu ISO**: Obtain the Ubuntu ISO file from the official website.  
+3. **Create a New Virtual Machine**: Launch VirtualBox and create a new virtual machine. During the setup process, allocate appropriate resources such as CPU(XXXXXXXXXX), memory(XXXXXXXXXXXX), and disk space(XXXXXXXX).  
+4. **Install Ubuntu**: Start the virtual machine and boot from the Ubuntu ISO. Follow the installation prompts to install Ubuntu within the virtual environment.  
+5. **Configure Ubuntu**: Once Ubuntu is installed, configure it according to your testing needs. Install any necessary packages and set up network parameters as required for your testing scenarios.
+```
+TODO
+```
+importante ricordate update e upgrade
+
+With the virtual machine set up, you can now proceed with testing 5G network even in environments where direct installation of Linux or use of WSL or vagrant is not feasible.  
 ### Example Overview
 The 5G architecture is designed to be more flexible, scalableand adaptable to the needs of various applications and services. Here we have the key components of the 5G architecture.  
 
-<img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/5G_architecture.jpg width=1000px></img>
+<img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/5Gnetwork/5G_architecture.jpg width=1000px></img>
 
 **Acronymes list:**
 - *User Equipement* UE
@@ -176,7 +194,7 @@ For the 5G Core Network we are going to use [OPEN5gs](https://github.com/open5gs
 In the context of alternatives [OpenAirInterface](https://github.com/openairinterface) presents itself as another viable option, both for [RAN](https://openairinterface.org/oai-5g-ran-project/) and [Core](https://openairinterface.org/oai-5g-core-network-project/).  
 The testing scenario includes 5 DockerHosts as shown in the figure below. The UE starts two PDU session one for each slice defined in the core network.  
 
-<img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/5G_topology.jpg width=1000px></img>
+<img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/5Gnetwork/5G_topology.jpg width=1000px></img>
 
 *upf_mec*: Represents the user-plane functionalities in the multi-edge cloud, simulating near-edge scenarios with low latency.  
 *upf_cld*: Simulates the cloud environment, characterized by higher latency.  
