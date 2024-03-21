@@ -12,7 +12,7 @@
     - [Building Custom Network Topologies (MininetNetPractice.py)](#building-custom-network-topologies-mininetnetpracticepy)
 6. [5G Network simulation](#5g-network-simulation)
     - [Vagrant commands](#vagrant-commands)
-    - [VM from scratch bypassing Vagrant](#vm-from-scratch-bypassing-vagrant)
+    - [VM from scratch - bypassing Vagrant](#vm-from-scratch---bypassing-vagrant)
     - [Example overview](#example-overview)
     - [Example execution](#example-execution)
 7. [Why sandbox?](#why-sandbox)
@@ -156,16 +156,41 @@ Some of the important ones are:
 - **vagrant snapshot [box_name]** : Take a snapshot of the current box.  
 
 [Pointer to more details...](https://opensource.com/article/21/9/test-vagrant)
-### VM from Scratch bypassing Vagrant
+### VM from scratch - bypassing Vagrant
 In case Linux or Windows Subsystem for Linux (WSL) isn't feasible, and employing Vagrant with the provided Vagrantfile by comnestemu is not an option, it's possible to construct a proper working environment using VirtualBox starting from an Ubuntu ISO file. Doing this in a VM and not in your OS is recommended due to the necessity of manipulating network parameters, thereby maintaining the integrity of the base operating system installation. By employing a virtual machine, we ensure that any alterations made to network configurations are contained within the virtualized environment, keeping the host system unaffected and ensuring a clean operational environment.  
 Here's a step-by-step guide on how to set up a virtual environment:  
 1. **Install VirtualBox**: Begin by downloading and installing VirtualBox on your system.  
 2. **Download Ubuntu ISO**: Obtain the Ubuntu ISO file from the official website.  
-3. **Create a New Virtual Machine**: Launch VirtualBox and create a new virtual machine. During the setup process, allocate appropriate resources such as CPU(XXXXXXXXXX), memory(XXXXXXXXXXXX), and disk space(XXXXXXXX).  
+3. **Create a New Virtual Machine**: Launch VirtualBox and create a new virtual machine. During the setup process, allocate appropriate resources such as CPU( >2), memory( >4 GB), and disk space( >25 GB).  
 4. **Install Ubuntu**: Start the virtual machine and boot from the Ubuntu ISO. Follow the installation prompts to install Ubuntu within the virtual environment.  
 5. **Configure Ubuntu**: Once Ubuntu is installed, configure it according to your testing needs. Install any necessary packages and set up network parameters as required for your testing scenarios.
 ```
-TODO
+sudo apt update
+sudo apt upgrade -y
+
+sudo apt-get install -y ansible bash-completion dfc gdb git htop iperf iperf3 make pkg-config python3 python3-dev python3-pip sudo tmux openbox xauth xorg xterm
+
+cd
+git clone https://github.com/edoardoColi/Communication_Sandbox.git
+cd ~/Communication_Sandbox
+sudo bash setupDocker.sh
+
+cd
+git clone https://git.comnets.net/public-repo/comnetsemu.git
+cd ~/comnetsemu
+git checkout master
+git pull origin master
+
+cd ~/comnetsemu/util
+bash install.sh -a
+bash install.sh -u
+
+cd
+git clone https://github.com/RiccardoFedrizzi/comnetsemu_5Gnet.git
+cd ~/comnetsemu_5Gnet/build
+sudo bash dockerhub_pull.sh
+# or eventually 'sudo bash build.sh' but my need some time
+sudo pip3 install pymongo
 ```
 importante ricordate update e upgrade
 
@@ -176,17 +201,17 @@ The 5G architecture is designed to be more flexible, scalableand adaptable to th
 <img src=https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/images/5Gnetwork/5G_architecture.jpg width=1000px></img>
 
 **Acronymes list:**
-- *User Equipement* UE
-- *Control Plane* CP
-- *User Plane* UP
-- *evolved NodeB* eNB
-- *User Plane Function* UPF
-- *Access and Mobility Function* AMF
-- *Session Management Function* SMF
-- *Policy Control Function* PCF
-- *Radio Access Network* RAN
-- *Evolved Packet System* EPS
-- *Evolved Packet Core* EPC
+- *User Equipement* _ UE
+- *Control Plane* _ CP
+- *User Plane* _ UP
+- *evolved NodeB* _ eNB
+- *User Plane Function* _ UPF
+- *Access and Mobility Function* _ AMF
+- *Session Management Function* _ SMF
+- *Policy Control Function* _ PCF
+- *Radio Access Network* _ RAN
+- *Evolved Packet System* _ EPS
+- *Evolved Packet Core* _ EPC
 
 There are many open-source implementation of 5G both for RAN and Core.  
 For the Radio Access Network we are going to use [UERANSIM](https://github.com/aligungr/UERANSIM).  
