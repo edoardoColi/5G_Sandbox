@@ -141,7 +141,8 @@ Session <-- To create a new session in MobaXterm
                             > Remote environment: Interactive shell
         > password: vagrant
 ```
-Windows Subsystem Linux(wsl) is a valid option for running Ubuntu on Windows([setup link](https://youtu.be/X-DHaQLrBi8?feature=shared)).
+Windows Subsystem Linux(wsl) is a valid option for running Ubuntu on Windows([setup link](https://youtu.be/X-DHaQLrBi8?feature=shared)).  
+In Windows you may also need `export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"`
 ### Vagrant commands
 Vagrant uses "base boxes" to bring up your local machines. These are several Vagrant commands which you can use to control your box.  
 Some of the important ones are:  
@@ -203,7 +204,7 @@ In the directory we will find [*example1.py*](https://github.com/RiccardoFedrizz
 - the first one is about using webUI to add UE, and we [refer to this](https://github.com/RiccardoFedrizzi/comnetsemu_5Gnet?tab=readme-ov-file#running-example1py).
 - the second creates the same environment of *example1.py* but the open5GS control plane configuration is done programmatically without using the webUI, we [refer to this](https://github.com/RiccardoFedrizzi/comnetsemu_5Gnet?tab=readme-ov-file#running-example2py).  
 
-**! ! !** To enter the containers must be executed `sudo python3 example2.py` and in another terminal `sudo ./enter_container.sh ue`**! ! !**  
+**! ! !** To enter the containers must be executed `nohup sudo python3 example2.py` and only after `sudo ./enter_container.sh ue`**! ! !**  
 ## Why sandbox?
 
 Using Docker, or a Virtual Machine, as a sandbox offers a powerful solution for isolating and testing applications and services in a controlled environment. Docker containers provide a lightweight, reproducible way to create sandboxes for development, testing, or experimentation. By encapsulating an application and its dependencies within a container, developers can ensure consistency across different environments, making it easier to troubleshoot issues and prevent conflicts. Docker's sandboxing capabilities also enhance security by isolating processes and resources, reducing the risk of unintended interactions or vulnerabilities. Whether for development, QA, or exploring new software, Docker's sandboxing approach simplifies the management of isolated environments, fostering agility and reliability in software development workflows.
