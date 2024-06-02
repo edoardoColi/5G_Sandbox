@@ -101,8 +101,8 @@ I tested the mininet emulation software to reproduce a real situation of a clust
 
 ## 5G Network simulation
 For emulating and testing a 5G Network we are going to use ComNetsEmu, a testbed and network emulator designed for the NFV/SDN teaching book "Computing in Communication Networks: From Theory to Practice".  
-We are taking all the installing information from official [website](https://git.comnets.net/public-repo/comnetsemu), if needed there is also a dumped comnetsemu public-repo webpage in [this pdf](https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/docs/Dump_public-repo_comnetsemu.pdf). The recommended and easiest way to install ComNetsEmu is to use Vagrant and Virtualbox; for this reason I provided a *setupVirtualBox.sh* script to automate the installation.  
-Long story short commands are:
+The recommended and easiest way to install ComNetsEmu is to use Vagrant and Virtualbox; for installing them I provided a *setupVirtualBox.sh* script to automate the installation.  
+Long story short, after the script, commands are:
 ```
 $ cd ~
 $ git clone https://git.comnets.net/public-repo/comnetsemu.git
@@ -128,6 +128,7 @@ $ bash ./install.sh -u
 $ cd ~/comnetsemu/
 $ sudo make test && sudo make test-examples
 ```
+We are taking all the installing information from official [website](https://git.comnets.net/public-repo/comnetsemu), if needed there is also a dumped comnetsemu public-repo webpage in [this pdf](https://github.com/edoardoColi/5G_Sandbox/blob/edoardoColi/docs/Dump_public-repo_comnetsemu.pdf).  
 **Warning**: Main developers of ComNetsEmu does not use Windows
 and does not have a Windows machine to test on.  
 If you are using Windows, they recommend using [MobaXterm](https://mobaxterm.mobatek.net/)
@@ -142,7 +143,10 @@ Session <-- To create a new session in MobaXterm
         > password: vagrant
 ```
 Windows Subsystem Linux(wsl) is a valid option for running Ubuntu on Windows([setup link](https://youtu.be/X-DHaQLrBi8?feature=shared)).  
-In Windows you may also need `export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"`
+In Windows, before `vagrant up`, you may also need to
+```
+export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
+```
 ### Vagrant commands
 Vagrant uses "base boxes" to bring up your local machines. These are several Vagrant commands which you can use to control your box.  
 Some of the important ones are:  
@@ -188,23 +192,26 @@ The testing scenario includes 5 DockerHosts as shown in the figure below. The UE
 
 In this simulation, we investigate the Round Trip Time (RTT) using two distinct slices: slice 1 involves reaching the User Plane Function (UPF) in the “cloud data center” with a designated DNN (Data Network Name) of “internet,” while slice 2 focuses on reaching the UPF in the “multi-access edge computing (MEC) data center” with a DNN of “mec”.  
 ### Example Execution
-The previous overview is based on the 5G deployment in comnetsemu of [Riccardo Fedrizzi](https://github.com/RiccardoFedrizzi). We con start cloning his project and building it
+The previous overview is based on the 5G comnetsemu deployment like in the repo of [Riccardo Fedrizzi](https://github.com/RiccardoFedrizzi).  
+If the installation using Vagrant has problems or something goes wrong we can refer to the guide in [here](https://git.comnets.net/public-repo/comnetsemu/-/tree/v0.3.0?ref_type=tags). Another option is to get from the official repository the [.ova file](https://drive.google.com/drive/folders/1FP5Bx2DHp7oV57Ja38_x01ABiw3wK11M?usp=sharing) of the installed virtual machine.  
+Once inside the virtual machine we con start the example cloning Fedrizzi project and building it
 ```
 $ cd ~/comnetsemu/app
 $ git clone https://github.com/RiccardoFedrizzi/comnetsemu_5Gnet.git
 $ cd ~/comnetsemu/app/comnetsemu_5Gnet/build
-$ ./build.sh
-```
-or alternatively download docker images from DockerHub, so instead of *build.sh* use
-```
 $ ./dockerhub_pull.sh
+```
+or alternatively build docker images from source, so instead of *dockerhub_pull.sh* use
+```
+$ ./build.sh
 ```
 Execution **dependencies** (Python packages: `sudo pip3 install pymongo`) must be installed befor running the examples.  
 In the directory we will find [*example1.py*](https://github.com/RiccardoFedrizzi/comnetsemu_5Gnet/blob/main/example1.py) and [*example2.py*](https://github.com/RiccardoFedrizzi/comnetsemu_5Gnet/blob/main/example2.py)
 - the first one is about using webUI to add UE, and we [refer to this](https://github.com/RiccardoFedrizzi/comnetsemu_5Gnet?tab=readme-ov-file#running-example1py).
 - the second creates the same environment of *example1.py* but the open5GS control plane configuration is done programmatically without using the webUI, we [refer to this](https://github.com/RiccardoFedrizzi/comnetsemu_5Gnet?tab=readme-ov-file#running-example2py).  
 
-**! ! !** To enter the containers must be executed `nohup sudo python3 example2.py` and only after `sudo ./enter_container.sh ue`**! ! !**  
+**! ! !** To enter the containers must be executed `nohup sudo python3 example2.py` and only after `sudo ./enter_container.sh ue`  
+If we have only CLI, each time is asked to run some process in backgroung/another shell, we can use `nohup`**! ! !**  
 ## Why sandbox?
 
 Using Docker, or a Virtual Machine, as a sandbox offers a powerful solution for isolating and testing applications and services in a controlled environment. Docker containers provide a lightweight, reproducible way to create sandboxes for development, testing, or experimentation. By encapsulating an application and its dependencies within a container, developers can ensure consistency across different environments, making it easier to troubleshoot issues and prevent conflicts. Docker's sandboxing capabilities also enhance security by isolating processes and resources, reducing the risk of unintended interactions or vulnerabilities. Whether for development, QA, or exploring new software, Docker's sandboxing approach simplifies the management of isolated environments, fostering agility and reliability in software development workflows.
